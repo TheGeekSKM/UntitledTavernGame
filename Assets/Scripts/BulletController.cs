@@ -24,11 +24,12 @@ public class BulletController : MonoBehaviour
     {
         _collided = true;
 
-        EnemyController _enemy = other.gameObject.GetComponent<EnemyController>();
-        if (_enemy != null)
+        IDamageable _damageable = other.gameObject.GetComponent<IDamageable>();
+        if (_damageable != null)
         {
-            _enemy.Damage(_bulletDamage);
+            _damageable.Damage(_bulletDamage);
         }
+       
 
        Destroy(gameObject);
     }
