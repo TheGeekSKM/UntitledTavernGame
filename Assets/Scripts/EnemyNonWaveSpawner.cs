@@ -17,27 +17,31 @@ public class EnemyNonWaveSpawner : MonoBehaviour
 
     private void Update()
     {
-       if (Time.time >= _timeToSpawn)
+
+        if (TimeManager.Instance._currentTime == TIME.NIGHT)
         {
-            Spawn();
-            _timeToSpawn = Time.time + _timeBetweenWaves;
+            if (Time.time >= _timeToSpawn)
+            {
+                Spawn();
+                _timeToSpawn = Time.time + _timeBetweenWaves;
+            }
         }
+       
     }
 
     private void Spawn()
     {
         int randomIndex = Random.Range(0, _enemies.Count);
 
-        //This basically spawns an object at a random index from the list above and spawns it at a random x, y, and z value that lies between the LeftMost and RightMost points
-        if (canSpawn)
-        {
-            Instantiate(_enemies[randomIndex], new Vector2(
+
+        Instantiate(_enemies[randomIndex], new Vector2(
             Random.Range(firstPoint.position.x, secondPoint.position.x), 
             Random.Range(firstPoint.position.y, secondPoint.position.y)), 
             Quaternion.identity);
 
             enemiesSpawned++;
-        }
+        //This basically spawns an object at a random index from the list above and spawns it at a random x, y, and z value that lies between the LeftMost and RightMost points
+       
     }
 
    
