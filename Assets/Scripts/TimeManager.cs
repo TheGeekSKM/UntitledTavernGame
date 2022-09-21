@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 
 public enum TIME
@@ -22,6 +23,7 @@ public class TimeManager : MonoBehaviour
     [SerializeField] int _maxSpawnDifficulty = 5;
     private bool _timeSwitchUpdate = false;
     public TIME _currentTime = TIME.DAY;
+    Health _playerHealth;
 
 
     [Header("References")]
@@ -46,6 +48,7 @@ public class TimeManager : MonoBehaviour
         }
     #endregion
         _timer = GetComponent<Timer>();
+        _playerHealth = FindObjectOfType<PlayerMovement>().GetComponent<Health>();
     }
 
 
@@ -63,7 +66,7 @@ public class TimeManager : MonoBehaviour
 
     void Update()
     {
-         
+         if (numOfDays.value > 20) {SceneManager.LoadScene("WinScreen");}
 
         //Keep at Bottom
         if (_timer.hourlyTimeNumber == new Vector2(6f, 0f) || (_timer.timeCurrently >= 360f && _timer.timeCurrently < 1200f)) 
