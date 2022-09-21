@@ -5,9 +5,11 @@ using UnityEngine;
 public class Timer : MonoBehaviour
 {
     [SerializeField] public float timeCurrently = 1200f;
+    [SerializeField] public float timeMultiplier = 20f;
     [SerializeField, ReadOnly] public string hourlyTime = "";
     [SerializeField, ReadOnly] public Vector2 hourlyTimeNumber;
     [SerializeField, ReadOnly] public bool stopTimer = false;
+
 
 
     void Awake()
@@ -19,7 +21,7 @@ public class Timer : MonoBehaviour
     {
         if (!stopTimer)
         {
-            timeCurrently += Time.deltaTime;
+            timeCurrently += Time.deltaTime * timeMultiplier;
         
             float minutes = Mathf.FloorToInt(timeCurrently / 60);
             float seconds = Mathf.FloorToInt(timeCurrently % 60);

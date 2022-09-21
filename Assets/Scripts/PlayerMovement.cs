@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !SaiUtils.IsMouseOverUi)
         {
             _weapon.Fire();
         }
@@ -42,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
         // _rb.velocity = new Vector2(_moveDirection.x * _moveSpeed, _moveDirection.y * _moveSpeed );
         _rb.MovePosition(new Vector2((transform.position.x + _moveDirection.x * _moveSpeed * Time.deltaTime),
             transform.position.y + _moveDirection.y * _moveSpeed * Time.deltaTime));
+            
         //Mouse Rotation Facing
         Vector2 aimDirection = _mousePosition - _rb.position;
         float aimAngle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg - 90f;

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 
 public enum TIME
@@ -16,8 +17,18 @@ public class TimeManager : MonoBehaviour
     //2. Switching to night mode activates spawners
     //3. ??
 
+    public IntegerSO numOfDays;
+    public int maxDays = 20;
+    [SerializeField] int _maxSpawnDifficulty = 7;
+    private bool _timeSwitchUpdate = false;
     public TIME _currentTime = TIME.DAY;
-    private Timer _timer;
+
+
+    [Header("References")]
+    [SerializeField] private Timer _timer;
+    [SerializeField] private List<EnemyNonWaveSpawner> _spawners = new List<EnemyNonWaveSpawner>();
+
+
 
     #region Singleton
     public static TimeManager Instance { get; private set; }
@@ -37,25 +48,46 @@ public class TimeManager : MonoBehaviour
         _timer = GetComponent<Timer>();
     }
 
+
     void Update()
     {
-        if (_timer.hourlyTimeNumber == new Vector2(6f, 0f)) 
+         
+
+        //Keep at Bottom
+        if (_timer.hourlyTimeNumber == new Vector2(6f, 0f) || (_timer.timeCurrently >= 360f && _timer.timeCurrently < 1200f)) 
         {
             _currentTime = TIME.DAY;
+
+            if (!_timeSwitchUpdate) 
+            {
+                OnTimeSwitch();
+                _timeSwitchUpdate = true;
+            }
             // _timer.stopTimer = true;
         }
-        else if (_timer.hourlyTimeNumber == new Vector2(20f, 0f)) {_currentTime = TIME.NIGHT;}
+        else if (_timer.hourlyTimeNumber == new Vector2(20f, 0f) || _timer.timeCurrently >= 1200f) 
+        {
+            _currentTime = TIME.NIGHT;
+            _timeSwitchUpdate = false;
+        }
     }
 
+    void OnTimeSwitch()
+    {
+        numOfDays.value++;
+        foreach (EnemyNonWaveSpawner e in _spawners)
+        {
+            e.Difficulty = ((maxDays + 0.5f) - numOfDays.value);
+            if (e.Difficulty > _maxSpawnDifficulty) {e.Difficulty = _maxSpawnDifficulty;}
+        }
+    }
 
     public void SwitchToNight()
     {
-        _currentTime = TIME.NIGHT;
         _timer.timeCurrently = 1200f;
     }
     public void SwitchToDay()
     {
-        _currentTime = TIME.DAY;
         _timer.timeCurrently = 360f;
     }    
     public void SwitchTime()

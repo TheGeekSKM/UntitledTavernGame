@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public static class SaiUtils
 {
@@ -21,4 +22,14 @@ public static class SaiUtils
         }
         return _minTransform;
    }
+
+   public static bool IsMouseOverUi
+    {
+        get
+        {
+            var events = EventSystem.current;
+            return events != null && events.IsPointerOverGameObject();
+        }
+    }
+
 }

@@ -12,6 +12,11 @@ public class EnemyNonWaveSpawner : MonoBehaviour
     [SerializeField] private float _timeBetweenWaves;
     [SerializeField, ReadOnly] private int enemiesSpawned = 0;
     public int EnemiesSpawned => enemiesSpawned;
+    public float Difficulty
+    {
+        get {return _timeBetweenWaves;}
+        set {_timeBetweenWaves = value;}
+    }
 
 
 
@@ -23,7 +28,7 @@ public class EnemyNonWaveSpawner : MonoBehaviour
             if (Time.time >= _timeToSpawn)
             {
                 Spawn();
-                _timeToSpawn = Time.time + _timeBetweenWaves;
+                _timeToSpawn = Time.time + Random.Range(0.1f, _timeBetweenWaves);
             }
         }
        

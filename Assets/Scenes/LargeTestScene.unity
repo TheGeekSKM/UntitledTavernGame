@@ -473,7 +473,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c1f2fe71dd83d641b07cf9df8680082, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numOfDays: {fileID: 11400000, guid: 84a4fbc8ba0d7c84ebd36b880be23dc5, type: 2}
+  maxDays: 20
+  _maxSpawnDifficulty: 7
   _currentTime: 0
+  _timer: {fileID: 0}
+  _spawners:
+  - {fileID: 558539735}
 --- !u!4 &463921819
 Transform:
   m_ObjectHideFlags: 0
@@ -502,9 +508,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeCurrently: 1200
+  timeMultiplier: 20
   hourlyTime: 
   hourlyTimeNumber: {x: 0, y: 0}
   stopTimer: 0
+--- !u!114 &558539735 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7900200394489604850, guid: f815a110ee6646c46be399a80431b9c8, type: 3}
+  m_PrefabInstance: {fileID: 6435158452665344456}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12df9e3bb7797c8489590ec5940e2bca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &765541195
 GameObject:
   m_ObjectHideFlags: 0
@@ -854,7 +872,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7900200394489604850, guid: f815a110ee6646c46be399a80431b9c8, type: 3}
       propertyPath: _timeBetweenWaves
-      value: 1
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7900200394489604850, guid: f815a110ee6646c46be399a80431b9c8, type: 3}
       propertyPath: _enemies.Array.size
