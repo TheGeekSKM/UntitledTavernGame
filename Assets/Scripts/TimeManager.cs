@@ -19,7 +19,7 @@ public class TimeManager : MonoBehaviour
 
     public IntegerSO numOfDays;
     public int maxDays = 20;
-    [SerializeField] int _maxSpawnDifficulty = 7;
+    [SerializeField] int _maxSpawnDifficulty = 5;
     private bool _timeSwitchUpdate = false;
     public TIME _currentTime = TIME.DAY;
 
@@ -49,6 +49,18 @@ public class TimeManager : MonoBehaviour
     }
 
 
+    private void Start()
+    {
+        foreach (EnemyNonWaveSpawner e in _spawners)
+        {
+            e.TimeBetweenWaves = CalculateDifficulty(numOfDays.value);
+            if (e.TimeBetweenWaves > _maxSpawnDifficulty) {e.TimeBetweenWaves = _maxSpawnDifficulty;}
+            if (e.TimeBetweenWaves <= 0.1f) {e.TimeBetweenWaves = 0.1f;}
+
+            e.MakeEnemiesHarder(numOfDays.value);
+        }
+    }
+
     void Update()
     {
          
@@ -77,9 +89,12 @@ public class TimeManager : MonoBehaviour
         numOfDays.value++;
         foreach (EnemyNonWaveSpawner e in _spawners)
         {
-            e._timeBetweenWaves = ((20.5f) - numOfDays.value);
-            if (e._timeBetweenWaves > _maxSpawnDifficulty) {e._timeBetweenWaves = _maxSpawnDifficulty;}
-            if (e._timeBetweenWaves <= 0.5f) {e._timeBetweenWaves = 0.5f;}
+            e.TimeBetweenWaves = CalculateDifficulty(numOfDays.value);
+            Debug.Log(e.TimeBetweenWaves);
+            if (e.TimeBetweenWaves > _maxSpawnDifficulty) {e.TimeBetweenWaves = _maxSpawnDifficulty;}
+            if (e.TimeBetweenWaves <= 0.1f) {e.TimeBetweenWaves = 0.1f;}
+
+            e.MakeEnemiesHarder(numOfDays.value);
         }
     }
 
@@ -95,5 +110,16 @@ public class TimeManager : MonoBehaviour
     {
         if (_currentTime == TIME.DAY) {SwitchToNight();}
         else {SwitchToDay();}
+    }
+
+    float CalculateDifficulty(int numberOfDays)
+    {
+        Debug.Log($"Number of Days: {numberOfDays}");
+        if (numberOfDays == 0) {return 5f;}
+        float diff = ((1f / (float)numberOfDays) * 10f);
+        Debug.Log($"diff is {diff}");
+        float perc = diff * 0.75f;
+        Debug.Log($"perc is {perc}");
+        return (perc);
     }
 }

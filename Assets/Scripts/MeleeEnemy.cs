@@ -1,10 +1,11 @@
+using System.Security.Cryptography.X509Certificates;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class MeleeEnemy : EnemyBase
 {
-    [SerializeField] private int _enemyDamage = 1;
+    [SerializeField] public int _enemyDamage = 1;
     [SerializeField] private Rigidbody2D _rB;
 
     

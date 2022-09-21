@@ -5,14 +5,29 @@ using UnityEngine;
 public class EnemyNonWaveSpawner : MonoBehaviour
 {
     public bool canSpawn = true;
-    public List<GameObject> _enemies = new List<GameObject>();
+    [SerializeField, HighlightIfNull] GameObject _meleeEnemy;
+    [SerializeField, HighlightIfNull] GameObject _rangedEnemy;
+    [SerializeField, HighlightIfNull] GameObject _miniBossEnemy;
+    [SerializeField] float _meleeSpawnPercentage = 60f;
+    [SerializeField] float _rangedSpawnPercentage = 30f;
+    [SerializeField] float _miniBossSpawnPercentage = 10f;
     public Transform firstPoint;
     public Transform secondPoint;
-    [SerializeField] private float _timeToSpawn;
-    [SerializeField, ReadOnly] public float _timeBetweenWaves;
-    [SerializeField, ReadOnly] private int enemiesSpawned = 0;
+    [SerializeField] float _timeToSpawn;
+    private float _timeBetweenWaves = 5f;
+    [SerializeField, ReadOnly] int enemiesSpawned = 0;
     public int EnemiesSpawned => enemiesSpawned;
-   
+    public float TimeBetweenWaves 
+    {
+        get
+        {
+            return _timeBetweenWaves;
+        } 
+        set
+        {
+            _timeBetweenWaves = value;
+        }
+    }
 
     void OnDrawGizmosSelected()
     {
@@ -24,13 +39,22 @@ public class EnemyNonWaveSpawner : MonoBehaviour
 
     private void Update()
     {
+        //Makes sure the spawn percentages never go above 100 by decreasing the MiniBoss and Ranged Enemy Spawns
+        if ((_meleeSpawnPercentage + _rangedSpawnPercentage + _miniBossSpawnPercentage) > 100f)
+        {
+            float _totalPercentage = _meleeSpawnPercentage + _rangedSpawnPercentage + _miniBossSpawnPercentage;
+            float _percentageDiff = _totalPercentage - 100;
+            _miniBossSpawnPercentage -= 0.75f * _percentageDiff;
+            _rangedSpawnPercentage -= 0.25f * _percentageDiff;
+        }
 
+        //Only allows Spawns at Night
         if (TimeManager.Instance._currentTime == TIME.NIGHT)
         {
             if (Time.time >= _timeToSpawn)
             {
                 Spawn();
-                _timeToSpawn = Time.time + Random.Range(0.1f, _timeBetweenWaves);
+                _timeToSpawn = Time.time + Random.Range(0.1f, TimeBetweenWaves);
             }
         }
        
@@ -38,17 +62,32 @@ public class EnemyNonWaveSpawner : MonoBehaviour
 
     private void Spawn()
     {
-        int randomIndex = Random.Range(0, _enemies.Count);
+        GameObject _enemyToSpawn = null;
 
+        float _randomSpawnNum = Random.Range(1, 101);
 
-        Instantiate(_enemies[randomIndex], new Vector2(
-            Random.Range(firstPoint.position.x, secondPoint.position.x), 
-            Random.Range(firstPoint.position.y, secondPoint.position.y)), 
-            Quaternion.identity);
+        if (_randomSpawnNum < _miniBossSpawnPercentage) {_enemyToSpawn = _miniBossEnemy;}
+        else if (_randomSpawnNum < _rangedSpawnPercentage) {_enemyToSpawn = _rangedEnemy;}
+        else if (_randomSpawnNum < _meleeSpawnPercentage) {_enemyToSpawn = _meleeEnemy;}
 
-            enemiesSpawned++;
-        //This basically spawns an object at a random index from the list above and spawns it at a random x, y, and z value that lies between the LeftMost and RightMost points
+        if (_enemyToSpawn != null)
+        {
+            Instantiate(_enemyToSpawn, new Vector2(
+                Random.Range(firstPoint.position.x, secondPoint.position.x), 
+                Random.Range(firstPoint.position.y, secondPoint.position.y)), 
+                Quaternion.identity);
+        }
+
+        enemiesSpawned++;
+        
        
+    }
+
+    public void MakeEnemiesHarder(int numberOfDays)
+    {
+        _meleeSpawnPercentage -= (numberOfDays * 2);
+        _rangedSpawnPercentage += numberOfDays;
+        _miniBossSpawnPercentage += numberOfDays;
     }
 
    
