@@ -77,8 +77,9 @@ public class TimeManager : MonoBehaviour
         numOfDays.value++;
         foreach (EnemyNonWaveSpawner e in _spawners)
         {
-            e.Difficulty = ((maxDays + 0.5f) - numOfDays.value);
-            if (e.Difficulty > _maxSpawnDifficulty) {e.Difficulty = _maxSpawnDifficulty;}
+            e._timeBetweenWaves = ((20.5f) - numOfDays.value);
+            if (e._timeBetweenWaves > _maxSpawnDifficulty) {e._timeBetweenWaves = _maxSpawnDifficulty;}
+            if (e._timeBetweenWaves <= 0.5f) {e._timeBetweenWaves = 0.5f;}
         }
     }
 

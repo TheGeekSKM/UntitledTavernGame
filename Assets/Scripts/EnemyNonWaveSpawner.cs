@@ -9,16 +9,18 @@ public class EnemyNonWaveSpawner : MonoBehaviour
     public Transform firstPoint;
     public Transform secondPoint;
     [SerializeField] private float _timeToSpawn;
-    [SerializeField] private float _timeBetweenWaves;
+    [SerializeField, ReadOnly] public float _timeBetweenWaves;
     [SerializeField, ReadOnly] private int enemiesSpawned = 0;
     public int EnemiesSpawned => enemiesSpawned;
-    public float Difficulty
+   
+
+    void OnDrawGizmosSelected()
     {
-        get {return _timeBetweenWaves;}
-        set {_timeBetweenWaves = value;}
+        foreach (Transform t in transform)
+        {
+            Gizmos.DrawWireSphere(t.position, 2);
+        }
     }
-
-
 
     private void Update()
     {
