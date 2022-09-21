@@ -69,7 +69,7 @@ public class TimeManager : MonoBehaviour
 
     void Update()
     {
-        if (_debugDayText != null) {_debugDayText.text = $"Day: {numOfDays.value}";}
+        if (_debugDayText != null) {_debugDayText.text = $"Day: {numOfDays.value}, Time: {_timer.hourlyTime}";}
         
          if (numOfDays.value > 20) {SceneManager.LoadScene("WinScreen");}
         //Keep at Bottom
