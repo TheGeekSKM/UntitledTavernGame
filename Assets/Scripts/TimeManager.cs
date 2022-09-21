@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 
 public enum TIME
@@ -23,12 +24,14 @@ public class TimeManager : MonoBehaviour
     [SerializeField] int _maxSpawnDifficulty = 5;
     private bool _timeSwitchUpdate = false;
     public TIME _currentTime = TIME.DAY;
-    Health _playerHealth;
+
 
 
     [Header("References")]
     [SerializeField] private Timer _timer;
     [SerializeField] private List<EnemyNonWaveSpawner> _spawners = new List<EnemyNonWaveSpawner>();
+    [SerializeField] bool showDebug = false;
+    [SerializeField, ShowIf("showDebug")] private TextMeshProUGUI _debugDayText;
 
 
 
@@ -48,7 +51,7 @@ public class TimeManager : MonoBehaviour
         }
     #endregion
         _timer = GetComponent<Timer>();
-        _playerHealth = FindObjectOfType<PlayerMovement>().GetComponent<Health>();
+
     }
 
 
@@ -66,8 +69,9 @@ public class TimeManager : MonoBehaviour
 
     void Update()
     {
+        if (_debugDayText != null) {_debugDayText.text = $"Day: {numOfDays.value}";}
+        
          if (numOfDays.value > 20) {SceneManager.LoadScene("WinScreen");}
-
         //Keep at Bottom
         if (_timer.hourlyTimeNumber == new Vector2(6f, 0f) || (_timer.timeCurrently >= 360f && _timer.timeCurrently < 1200f)) 
         {
@@ -124,5 +128,10 @@ public class TimeManager : MonoBehaviour
         float perc = diff * 0.75f;
         Debug.Log($"perc is {perc}");
         return (perc);
+    }
+
+    public void OnPlayerDeath()
+    {
+        SceneManager.LoadScene("LoseScreen");
     }
 }

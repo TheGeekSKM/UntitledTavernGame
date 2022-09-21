@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Health : MonoBehaviour, IDamageable
 {
     [SerializeField] private int _maxHealth;
     [SerializeField, ReadOnly] private int _currentHealth;
     [SerializeField] private bool _logHealth;
+
+    [SerializeField] private UnityEvent OnDeath;
     public int CurrentHealth
     {
         get {return _currentHealth;}
@@ -35,6 +38,7 @@ public class Health : MonoBehaviour, IDamageable
 
     public void Die()
     {
+        OnDeath?.Invoke();
         Destroy(gameObject);
     }
    

@@ -25,7 +25,14 @@ public class ObjectFollow : MonoBehaviour{
         //     _currentTarget = SaiUtils.GetClosestTransform(_targets, transform);
         // }
 
-        _currentTarget = _player.transform;
+        if (_player != null) 
+        {
+            _currentTarget = _player.transform;
+        }
+        else 
+        {
+            _currentTarget = transform;
+        }
 
         Vector2 direction = _currentTarget.position - transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
