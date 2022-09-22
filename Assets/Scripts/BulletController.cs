@@ -8,12 +8,19 @@ public class BulletController : MonoBehaviour
     [SerializeField] private float lifeTime = 5f;
     [SerializeField] private int _bulletDamage = 1;
     [SerializeField, ReadOnly] private bool _collided = false;
+    [SerializeField] Rigidbody2D _rB;
 
     public int BulletDamage 
     {
         get {return _bulletDamage;}
         set {_bulletDamage = value;}
     }
+
+    void OnValidate()
+    {
+        if (_rB == null) {_rB = GetComponent<Rigidbody2D>();}
+    }
+   
     
     private void Awake()
     {
@@ -33,6 +40,8 @@ public class BulletController : MonoBehaviour
 
        Destroy(gameObject);
     }
+
+   
 
     IEnumerator DestroyTime()
     {

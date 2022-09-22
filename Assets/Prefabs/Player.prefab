@@ -252,6 +252,21 @@ MonoBehaviour:
   _maxHealth: 10
   _currentHealth: 0
   _logHealth: 0
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: TimeManager, Assembly-CSharp
+        m_MethodName: OnPlayerDeath
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   resetHealthOnStart: 1
 --- !u!1 &5055545590276433902
 GameObject:
@@ -382,7 +397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9053ee8a9490a1c4184ee69a4c5c4b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletPrefab: {fileID: 8026314258934667204, guid: 7fa7127a1a09be147be4cd2ae1584097, type: 3}
+  UseConstant: 0
+  ConstantValue: {fileID: 0}
+  _weapon: {fileID: 11400000, guid: 1fb05fe9b51edc24aa2e0512a68188e6, type: 2}
   _firePoint: {fileID: 5055545589117018716}
-  _fireForce: 20
-  _weaponDamage: 1

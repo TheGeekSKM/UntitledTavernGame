@@ -4,24 +4,39 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
-   [SerializeField] private GameObject _bulletPrefab;
-   [SerializeField] private Transform _firePoint;
-   [SerializeField] private float _fireForce = 20f;
-   [SerializeField] private int _weaponDamage = 1;
+    public bool UseConstant;
+    public WeaponSO ConstantValue;
+    [SerializeField, HighlightIfNull] private WeaponSO _weapon;
+    [SerializeField, HighlightIfNull] Transform _firePoint;
 
-   public int WeaponDamage 
-   {
-        get { return _weaponDamage; }
-        set { _weaponDamage = value; }
-   }
+    public WeaponSO Weapon
+    {
+        get { return UseConstant ? ConstantValue : _weapon; }
+    }
+    public string WeaponName
+    {
+          get { return UseConstant ? ConstantValue.weaponName: _weapon.weaponName; }
+    }
+    public string WeaponDescription
+    {
+          get { return UseConstant ? ConstantValue.description: _weapon.description; }
+    }
+    public GameObject BulletPrefab
+    {
+          get { return UseConstant ? ConstantValue._bulletPrefab: _weapon._bulletPrefab; }
+    }
+    public float FireForce
+    {
+          get { return UseConstant ? ConstantValue._fireForce: _weapon._fireForce; }
+    }
+    public int WeaponDamage
+    {
+          get { return UseConstant ? ConstantValue._weaponDamage: _weapon._weaponDamage; }
+    }
 
-   public void Fire()
-   {
-        GameObject _bullet = Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation);
-        BulletController _bC = _bullet.GetComponent<BulletController>();
-
-        if (_bC != null) { _bC.BulletDamage += _weaponDamage; }
-
-        _bullet.GetComponent<Rigidbody2D>().AddForce(_firePoint.up * _fireForce, ForceMode2D.Impulse);
-   }
+    public void Fire()
+    {
+          WeaponSO _weaponToUse = UseConstant ? ConstantValue : _weapon;
+          if (_weaponToUse != null) {_weaponToUse.FireGun(_firePoint);}
+    }
 }

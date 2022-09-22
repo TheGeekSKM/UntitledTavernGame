@@ -77,10 +77,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9053ee8a9490a1c4184ee69a4c5c4b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletPrefab: {fileID: 8026314258934667204, guid: 7fa7127a1a09be147be4cd2ae1584097, type: 3}
+  UseConstant: 0
+  ConstantValue: {fileID: 0}
+  _weapon: {fileID: 11400000, guid: e2d122e9461ddda45a3a20d6684ceed4, type: 2}
   _firePoint: {fileID: 3990939991977828922}
-  _fireForce: 20
-  _weaponDamage: 1
 --- !u!1 &6401819791450342852
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,6 +306,8 @@ MonoBehaviour:
   _isRangedEnemy: 1
   _attackRange: 15
   _isShooting: 0
+  _isBoss: 0
+  _shootingRange: 15
   moveSpeed: 2
   rb: {fileID: 6401819792585557632}
 --- !u!114 &3183853060499602622

@@ -7,6 +7,8 @@ public class ObjectFollow : MonoBehaviour{
     [SerializeField] bool _isRangedEnemy = false;
     [SerializeField, ShowIf("_isRangedEnemy")] float _attackRange = 5f; 
     [SerializeField, ShowIf("_isRangedEnemy")] bool _isShooting = false; 
+    [SerializeField] bool _isBoss = false;
+    [SerializeField, ShowIf("_isBoss")] float _shootingRange = 15f;
     public bool IsShooting 
     {
         get
@@ -29,7 +31,10 @@ public class ObjectFollow : MonoBehaviour{
 
     void OnDrawGizmosSelected()
     {
+        Gizmos.color = Color.white;
         if (_isRangedEnemy) {Gizmos.DrawWireSphere(transform.position, _attackRange);}
+        Gizmos.color = Color.blue;
+        if (_isBoss) {Gizmos.DrawWireSphere(transform.position, _shootingRange);}
     }
 
     // Update is called once per frame
@@ -71,6 +76,21 @@ public class ObjectFollow : MonoBehaviour{
             else
             {
                 _isShooting = false;
+                moveSpeed = _tempMoveSpeed;
+                rb.MovePosition((Vector2)transform.position + (direction * moveSpeed * Time.deltaTime));
+            }
+        }
+        else if (_isBoss)
+        {
+            if (Vector2.Distance(transform.position, _currentTarget.position) <= _shootingRange) {_isShooting = true;}
+            else {_isShooting = false;}
+
+            if (Vector2.Distance(transform.position, _currentTarget.position) <= _attackRange)
+            {
+                moveSpeed = 0f;
+            }
+            else
+            {
                 moveSpeed = _tempMoveSpeed;
                 rb.MovePosition((Vector2)transform.position + (direction * moveSpeed * Time.deltaTime));
             }

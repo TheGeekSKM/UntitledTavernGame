@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RangedEnemy : MonoBehaviour
+public class RangedEnemy : EnemyBase
 {
     public float startTimeBetweenShots = 2f;
     float _timeBetweenShots;
