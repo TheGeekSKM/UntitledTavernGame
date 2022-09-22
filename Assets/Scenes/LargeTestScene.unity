@@ -1099,7 +1099,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7900200394489604850, guid: f815a110ee6646c46be399a80431b9c8, type: 3}
       propertyPath: _meleeSpawnPercentage
-      value: 70
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 7900200394489604850, guid: f815a110ee6646c46be399a80431b9c8, type: 3}
       propertyPath: _enemies.Array.data[0]
@@ -1107,7 +1107,7 @@ PrefabInstance:
       objectReference: {fileID: 6401819792585557644, guid: efade00cd22985b4e884d08707c97075, type: 3}
     - target: {fileID: 7900200394489604850, guid: f815a110ee6646c46be399a80431b9c8, type: 3}
       propertyPath: _rangedSpawnPercentage
-      value: 20
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 7900200394489604850, guid: f815a110ee6646c46be399a80431b9c8, type: 3}
       propertyPath: _miniBossSpawnPercentage

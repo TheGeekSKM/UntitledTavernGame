@@ -31,6 +31,7 @@ public class TimeManager : MonoBehaviour
     [SerializeField] private Timer _timer;
     [SerializeField] private List<EnemyNonWaveSpawner> _spawners = new List<EnemyNonWaveSpawner>();
     [SerializeField] bool showDebug = false;
+    bool rand = false;
     [SerializeField, ShowIf("showDebug")] private TextMeshProUGUI _debugDayText;
 
 
@@ -51,7 +52,7 @@ public class TimeManager : MonoBehaviour
         }
     #endregion
         _timer = GetComponent<Timer>();
-
+        rand = showDebug;
     }
 
 

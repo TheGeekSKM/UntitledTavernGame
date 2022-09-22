@@ -4,16 +4,32 @@ using UnityEngine;
 
 public class ObjectFollow : MonoBehaviour{
     // [SerializeField] private List<Transform> _targets = new List<Transform>();
+    [SerializeField] bool _isRangedEnemy = false;
+    [SerializeField, ShowIf("_isRangedEnemy")] float _attackRange = 5f; 
+    [SerializeField, ShowIf("_isRangedEnemy")] bool _isShooting = false; 
+    public bool IsShooting 
+    {
+        get
+        {return _isShooting;}
+    }
+
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private Rigidbody2D rb;
     private Vector2 movement;
     private Transform _currentTarget;
     private GameObject _player;
+    float _tempMoveSpeed;
 
     // Start is called before the first frame update
     void Start(){
         rb = this.GetComponent<Rigidbody2D>();
         _player = GameObject.FindGameObjectWithTag("Player");
+        _tempMoveSpeed = moveSpeed;
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        if (_isRangedEnemy) {Gizmos.DrawWireSphere(transform.position, _attackRange);}
     }
 
     // Update is called once per frame
@@ -44,6 +60,30 @@ public class ObjectFollow : MonoBehaviour{
         moveCharacter(movement);
     }
     void moveCharacter(Vector2 direction){
-        rb.MovePosition((Vector2)transform.position + (direction * moveSpeed * Time.deltaTime));
+        if (_isRangedEnemy)
+        {
+            
+            if (Vector2.Distance(transform.position, _currentTarget.position) <= _attackRange)
+            {
+                moveSpeed = 0f;
+                _isShooting = true;
+            }
+            else
+            {
+                _isShooting = false;
+                moveSpeed = _tempMoveSpeed;
+                rb.MovePosition((Vector2)transform.position + (direction * moveSpeed * Time.deltaTime));
+            }
+        }
+        else
+        {
+            rb.MovePosition((Vector2)transform.position + (direction * moveSpeed * Time.deltaTime));
+        }
+        
+    }
+
+    public void SetTarget(Transform transform)
+    {
+        _currentTarget = transform;
     }
 }

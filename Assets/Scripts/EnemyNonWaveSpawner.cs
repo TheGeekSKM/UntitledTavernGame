@@ -29,6 +29,13 @@ public class EnemyNonWaveSpawner : MonoBehaviour
         }
     }
 
+    private GameObject _player;
+
+    void Awake()
+    {
+        _player = GameObject.FindGameObjectWithTag("Player");
+    }
+
     void OnDrawGizmosSelected()
     {
         foreach (Transform t in transform)
@@ -72,10 +79,11 @@ public class EnemyNonWaveSpawner : MonoBehaviour
 
         if (_enemyToSpawn != null)
         {
-            Instantiate(_enemyToSpawn, new Vector2(
-                Random.Range(firstPoint.position.x, secondPoint.position.x), 
-                Random.Range(firstPoint.position.y, secondPoint.position.y)), 
-                Quaternion.identity);
+            GameObject _enemy = Instantiate(_enemyToSpawn, new Vector2(
+                                    Random.Range(firstPoint.position.x, secondPoint.position.x), 
+                                    Random.Range(firstPoint.position.y, secondPoint.position.y)), 
+                                    Quaternion.identity);
+            if (_player != null) {_enemy.GetComponent<ObjectFollow>().SetTarget(_player.transform);}
         }
 
         enemiesSpawned++;
