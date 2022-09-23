@@ -6,13 +6,34 @@ public class WeaponController : MonoBehaviour
 {
     public bool UseConstant;
     public WeaponSO ConstantValue;
-    [SerializeField, HighlightIfNull] private WeaponSO _weapon;
+    [SerializeField, HighlightIfNull] List<WeaponSO> _weapons = new List<WeaponSO>();
+    private WeaponSO _weapon;
     [SerializeField, HighlightIfNull] Transform _firePoint;
+
+    private void Awake()
+    {
+        _weapon = _weapons[0];
+    }
 
     public WeaponSO Weapon
     {
         get { return UseConstant ? ConstantValue : _weapon; }
     }
+
+    public WeaponSO GetWeapon(int index)
+    {
+        if (index < (_weapons.Count - 1))
+        {
+            return _weapons[index];
+        }
+        return _weapons[0];
+    }
+
+    public List<WeaponSO> ListOfWeapons
+    {
+        get { return _weapons; }
+    }
+
     public string WeaponName
     {
           get { return UseConstant ? ConstantValue.weaponName: _weapon.weaponName; }

@@ -47,8 +47,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UseConstant: 0
-  ConstantValue: {fileID: 0}
-  _weapon: {fileID: 11400000, guid: 133017b9bc92f1d408be273dd16398ef, type: 2}
+  ConstantValue: {fileID: 11400000, guid: 133017b9bc92f1d408be273dd16398ef, type: 2}
+  _weapons:
+  - {fileID: 11400000, guid: 133017b9bc92f1d408be273dd16398ef, type: 2}
   _firePoint: {fileID: 3664926079809336635}
 --- !u!1 &4722911435152847710
 GameObject:

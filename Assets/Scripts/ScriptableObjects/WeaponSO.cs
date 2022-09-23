@@ -8,6 +8,7 @@ public class WeaponSO : ScriptableObject
     public string weaponName = "Untitled Weapon";
     [TextArea]
     public string description = "This does untitled things to unnamed beings!";
+    public Sprite _weaponSprite;
 
     public GameObject _bulletPrefab;
     public float _fireForce = 20f;
