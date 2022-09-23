@@ -161,6 +161,7 @@ GameObject:
   - component: {fileID: 5055545590051373108}
   - component: {fileID: 5055545590051373104}
   - component: {fileID: 5055545590051373105}
+  - component: {fileID: 1472971831}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -268,6 +269,19 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   resetHealthOnStart: 1
+--- !u!114 &1472971831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5055545590051374027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47f64cc12016f6f42b4f4ad039f9170f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inventory: {fileID: 11400000, guid: e663884774790e24b8a9825ec407f22c, type: 2}
 --- !u!1 &5055545590276433902
 GameObject:
   m_ObjectHideFlags: 0

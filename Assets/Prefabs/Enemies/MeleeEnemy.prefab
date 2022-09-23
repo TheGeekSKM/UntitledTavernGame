@@ -290,6 +290,21 @@ MonoBehaviour:
   _maxHealth: 3
   _currentHealth: 0
   _logHealth: 0
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6401819792585557639}
+        m_TargetAssemblyTypeName: EnemyBase, Assembly-CSharp
+        m_MethodName: LootDrop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   resetHealthOnStart: 1
 --- !u!114 &6401819792585557636
 MonoBehaviour:
@@ -303,8 +318,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dca89fb387c49f642a36a46bfb7236dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targets:
-  - {fileID: 5055545590051373111, guid: 718a8a51daa2bb747b6b2bbb54ee81ac, type: 3}
+  _isRangedEnemy: 0
+  _attackRange: 5
+  _isShooting: 0
+  _isBoss: 0
+  _shootingRange: 15
   moveSpeed: 2
   rb: {fileID: 6401819792585557632}
 --- !u!114 &6401819792585557639
@@ -319,7 +337,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb1cc08391ebf6a49a5eb856df75aea4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cost: 2
-  enemyPrefab: {fileID: 6401819792585557644}
+  _loot:
+  - {fileID: 4187919969937232501, guid: d76fc7e549d5b974a912f8818bf7b9f3, type: 3}
+  _chanceToDrop: 25
   _enemyDamage: 1
   _rB: {fileID: 6401819792585557632}

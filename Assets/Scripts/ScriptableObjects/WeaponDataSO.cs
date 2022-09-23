@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "UntitledTavernGame/WeaponSO")]
-public class WeaponSO : ScriptableObject
+[CreateAssetMenu(menuName = "UntitledTavernGame/WeaponDataSO")]
+public class WeaponDataSO : ScriptableObject
 {
     public string weaponName = "Untitled Weapon";
     [TextArea]

@@ -290,7 +290,19 @@ MonoBehaviour:
   _logHealth: 0
   OnDeath:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3183853060499602622}
+        m_TargetAssemblyTypeName: EnemyBase, Assembly-CSharp
+        m_MethodName: LootDrop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   resetHealthOnStart: 1
 --- !u!114 &6401819792585557636
 MonoBehaviour:
@@ -323,6 +335,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a057db6b8abada5478de8e2e8e8695ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _loot:
+  - {fileID: 4187919969937232501, guid: d76fc7e549d5b974a912f8818bf7b9f3, type: 3}
+  _chanceToDrop: 30
   startTimeBetweenShots: 3
   _weapon: {fileID: 154557652153434159}
   _follow: {fileID: 6401819792585557636}

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: Basic Crossbow
   description: A worn down crossbow that barely stays alive...
+  _weaponSprite: {fileID: 0}
   _bulletPrefab: {fileID: 8026314258934667204, guid: 7fa7127a1a09be147be4cd2ae1584097, type: 3}
   _fireForce: 20
-  _weaponDamage: 1
+  _weaponDamage: 2
