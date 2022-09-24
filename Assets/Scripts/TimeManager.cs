@@ -77,6 +77,7 @@ public class TimeManager : MonoBehaviour
         if (_timer.hourlyTimeNumber == new Vector2(6f, 0f) || (_timer.timeCurrently >= 360f && _timer.timeCurrently < 1200f)) 
         {
             _currentTime = TIME.DAY;
+            _timer.stopTimer = true;
 
             if (!_timeSwitchUpdate) 
             {
@@ -89,6 +90,7 @@ public class TimeManager : MonoBehaviour
         {
             _currentTime = TIME.NIGHT;
             _timeSwitchUpdate = false;
+            _timer.stopTimer = false;
         }
     }
 
@@ -116,8 +118,7 @@ public class TimeManager : MonoBehaviour
     }    
     public void SwitchTime()
     {
-        if (_currentTime == TIME.DAY) {SwitchToNight();}
-        else {SwitchToDay();}
+        _timer.timeCurrently += 720f;
     }
 
     float CalculateDifficulty(int numberOfDays)

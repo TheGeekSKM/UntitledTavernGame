@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,15 @@ public class Timer : MonoBehaviour
     void Awake()
     {
         hourlyTimeNumber = new Vector2(0, 0);
+    }
+
+    public void PauseTime()
+    {
+        stopTimer = true;
+    }
+    public void UnPauseTime()
+    {
+        stopTimer = false;
     }
 
     void Update()
