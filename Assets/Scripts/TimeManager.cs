@@ -25,9 +25,18 @@ public class TimeManager : MonoBehaviour
     private bool _timeSwitchUpdate = false;
     public TIME _currentTime = TIME.DAY;
 
+    [Header("Resource Collection")]
+    [SerializeField] float _timeToCollectBones;
 
-
+    [Header("Trap Settings")]
+    [SerializeField] int _amountOfBonesToMakeTrap;
+    [SerializeField] int _amountOfBonesToFixTrap;
+    [SerializeField] float _timeToPlaceTrap;
+    [SerializeField] float _timeToFixTrap;
+    
     [Header("References")]
+    [SerializeField] Inventory _playerInventory;
+    [SerializeField, HighlightIfNull] GameObject _dayTimeMenu;
     [SerializeField] private Timer _timer;
     [SerializeField] private List<EnemyNonWaveSpawner> _spawners = new List<EnemyNonWaveSpawner>();
     [SerializeField] bool showDebug = false;
@@ -74,25 +83,45 @@ public class TimeManager : MonoBehaviour
         
          if (numOfDays.value > 20) {SceneManager.LoadScene("WinScreen");}
         //Keep at Bottom
-        if (_timer.hourlyTimeNumber == new Vector2(6f, 0f) || (_timer.timeCurrently >= 360f && _timer.timeCurrently < 1200f)) 
-        {
-            _currentTime = TIME.DAY;
-            _timer.stopTimer = true;
+        CheckTime();
+    
+        //TODO Consider this...
+        // if (_currentTime == TIME.DAY) {_timer.stopTimer = true;}
+        // else {_timer.stopTimer = false; }
 
-            if (!_timeSwitchUpdate) 
-            {
-                OnTimeSwitch();
-                _timeSwitchUpdate = true;
-            }
-            // _timer.stopTimer = true;
-        }
-        else if (_timer.hourlyTimeNumber == new Vector2(20f, 0f) || _timer.timeCurrently >= 1200f) 
-        {
-            _currentTime = TIME.NIGHT;
-            _timeSwitchUpdate = false;
-            _timer.stopTimer = false;
-        }
+        if (_currentTime == TIME.DAY) {_dayTimeMenu.SetActive(true);}
+        else {_dayTimeMenu.SetActive(false); }
     }
+
+    #region DayTime Buttons
+
+
+    public void CollectBones()
+    {
+        int _numTotalEnemiesSpawned = 0;
+        foreach (EnemyNonWaveSpawner e in _spawners)
+        {
+            _numTotalEnemiesSpawned += e.EnemiesSpawned;
+        }
+        int bonesCollected = Random.Range(0, _numTotalEnemiesSpawned);
+        _playerInventory.AddBones(bonesCollected);
+        Debug.Log($"You collected {bonesCollected} bones, and it is now night time!");
+        _timer.SetTime(TIME.NIGHT);
+        
+    }
+    public void PlaceTraps()
+    {
+        Debug.Log("WIP");
+    }
+
+    public void FixTrapsPlaced()
+    {
+        Debug.Log("WIP");
+    }
+   
+
+
+    #endregion
 
     void OnTimeSwitch()
     {
@@ -108,17 +137,13 @@ public class TimeManager : MonoBehaviour
         }
     }
 
-    public void SwitchToNight()
-    {
-        _timer.timeCurrently = 1200f;
-    }
-    public void SwitchToDay()
-    {
-        _timer.timeCurrently = 360f;
-    }    
+   
     public void SwitchTime()
     {
-        _timer.timeCurrently += 720f;
+        _timer.AddTime(720f);
+        Debug.Log(_timer.timeCurrently);
+        CheckTime();
+        
     }
 
     float CalculateDifficulty(int numberOfDays)
@@ -136,4 +161,29 @@ public class TimeManager : MonoBehaviour
     {
         SceneManager.LoadScene("LoseScreen");
     }
+
+    public void CheckTime()
+    {
+        if (_timer.hourlyTimeNumber == new Vector2(6f, 0f) || (_timer.timeCurrently >= 360f && _timer.timeCurrently < 1200f)) 
+        {
+            _currentTime = TIME.DAY;
+
+
+            if (!_timeSwitchUpdate) 
+            {
+                OnTimeSwitch();
+                _timeSwitchUpdate = true;
+            }
+            // _timer.stopTimer = true;
+        }
+        else if (_timer.hourlyTimeNumber == new Vector2(20f, 0f) || _timer.timeCurrently >= 1200f) 
+        {
+            _currentTime = TIME.NIGHT;
+            _timeSwitchUpdate = false;
+
+        }
+    }
+
+    
+
 }
