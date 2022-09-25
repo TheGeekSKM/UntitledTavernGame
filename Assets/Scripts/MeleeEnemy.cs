@@ -18,6 +18,7 @@ public class MeleeEnemy : EnemyBase
         get {return _enemyDamage;}
         set {_enemyDamage = value;}
     }
+   
    void OnCollisionEnter2D(Collision2D other)
    {
         IDamageable damageable = other.gameObject.GetComponent<IDamageable>();

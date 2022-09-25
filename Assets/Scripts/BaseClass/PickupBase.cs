@@ -10,8 +10,11 @@ public class PickupBase : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        _onPick?.Invoke();
-        OnPickUp(collision);
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            _onPick?.Invoke();
+            OnPickUp(collision);
+        }
         
     }
 

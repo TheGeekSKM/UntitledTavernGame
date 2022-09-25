@@ -337,6 +337,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _loot:
   - {fileID: 4187919969937232501, guid: d76fc7e549d5b974a912f8818bf7b9f3, type: 3}
+  - {fileID: 4141420295554182939, guid: d89b01e1bdd9f4744bc8b153e5319678, type: 3}
+  - {fileID: 1628866336920722042, guid: c929175d3a1f7074093d5184bfd3b2b1, type: 3}
+  - {fileID: 7071447168066244995, guid: 464cca059593176489e507f6ae67b308, type: 3}
   _chanceToDrop: 30
   startTimeBetweenShots: 3
   _weapon: {fileID: 154557652153434159}

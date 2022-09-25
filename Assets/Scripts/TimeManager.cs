@@ -23,6 +23,7 @@ public class TimeManager : MonoBehaviour
     public int maxDays = 20;
     [SerializeField] int _maxSpawnDifficulty = 5;
     private bool _timeSwitchUpdate = false;
+    private bool _timeSwitchNightUpdate = false;
     public TIME _currentTime = TIME.DAY;
 
     [Header("Resource Collection")]
@@ -35,6 +36,8 @@ public class TimeManager : MonoBehaviour
     [SerializeField] float _timeToFixTrap;
     
     [Header("References")]
+    [SerializeField] UnityEvent _onTimeSwitchDay;
+    [SerializeField] UnityEvent _onTimeSwitchNight;
     [SerializeField] Inventory _playerInventory;
     [SerializeField, HighlightIfNull] GameObject _dayTimeMenu;
     [SerializeField] private Timer _timer;
@@ -125,6 +128,8 @@ public class TimeManager : MonoBehaviour
 
     void OnTimeSwitch()
     {
+        Debug.Log("IT IS DAY!");
+        _onTimeSwitchDay?.Invoke();
         numOfDays.value++;
         foreach (EnemyNonWaveSpawner e in _spawners)
         {
@@ -135,6 +140,12 @@ public class TimeManager : MonoBehaviour
 
             e.MakeEnemiesHarder(numOfDays.value);
         }
+    }
+
+    void OnTimeSwitchNight()
+    {
+        _onTimeSwitchNight?.Invoke();
+        Debug.Log("IT IS NIGHT");
     }
 
    
@@ -173,13 +184,23 @@ public class TimeManager : MonoBehaviour
             {
                 OnTimeSwitch();
                 _timeSwitchUpdate = true;
+                _timeSwitchNightUpdate = false;
             }
             // _timer.stopTimer = true;
         }
         else if (_timer.hourlyTimeNumber == new Vector2(20f, 0f) || _timer.timeCurrently >= 1200f) 
         {
             _currentTime = TIME.NIGHT;
-            _timeSwitchUpdate = false;
+
+            if (!_timeSwitchNightUpdate)
+            {
+                OnTimeSwitchNight();
+                _timeSwitchNightUpdate = true;
+                _timeSwitchUpdate = false;
+            }
+
+            
+
 
         }
     }

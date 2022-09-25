@@ -10,18 +10,11 @@ public class EnemyBase : MonoBehaviour
     {
         if (_loot.Count > 0)
         {
-            foreach (GameObject g in _loot)
+            
+            if (Random.Range(1f, 101f) < _chanceToDrop)
             {
-
-                if (Random.Range(1f, 101f) < _chanceToDrop)
-                {
-                    Vector2 randLocation = new Vector2(transform.position.x + Random.Range(-7f, 7f), transform.position.y + Random.Range(-7f, 7f));
-                    if (randLocation.x > 20f) {randLocation.x = 20f;}
-                    if (randLocation.x < -20f) {randLocation.x = -20f;}
-                    if (randLocation.y > 12f) {randLocation.y = 12f;}
-                    if (randLocation.y < -12f) {randLocation.y = -12f;}
-                    Instantiate(g, randLocation, Quaternion.identity);
-                }
+                GameObject _itemToDrop = _loot[Random.Range(0, _loot.Count - 1)];
+                Instantiate(_itemToDrop, transform.position, Quaternion.identity);
             }
         }
         

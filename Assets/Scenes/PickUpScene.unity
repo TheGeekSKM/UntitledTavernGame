@@ -875,9 +875,9 @@ MonoBehaviour:
   _health: {fileID: 1472971828}
   _movement: {fileID: 1472971829}
   _weapon: {fileID: 1472971827}
-  _healthText: {fileID: 0}
-  _speedText: {fileID: 0}
-  _weaponDamageText: {fileID: 0}
+  _healthText: {fileID: 967582051}
+  _speedText: {fileID: 129877051}
+  _weaponDamageText: {fileID: 952187771}
 --- !u!1 &2033775349
 GameObject:
   m_ObjectHideFlags: 0
