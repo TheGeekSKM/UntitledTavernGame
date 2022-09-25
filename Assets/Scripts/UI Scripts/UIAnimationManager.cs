@@ -7,12 +7,25 @@ public class UIAnimationManager : MonoBehaviour
     [SerializeField] RectTransform _cachedOriginalTransform;
     [SerializeField] Vector3 _cachedFinalTransform;
     [SerializeField] Vector3 _startTransform;
+    [SerializeField] bool _followObject;
+    [SerializeField, ShowIf("_followObject"), HighlightIfNull] Transform _followObjectTransform;
+    [SerializeField, ShowIf("_followObject")] float _followObjectTransformXOffset;
+    [SerializeField, ShowIf("_followObject")] float _followObjectTransformYOffset;
 
     void OnValidate()
     {
         if (_cachedOriginalTransform == null) {_cachedOriginalTransform = GetComponent<RectTransform>();}
     }
 
+    void Start()
+    {
+        if (_followObject && _followObjectTransform != null)
+        {
+            Vector3 _newTransform = new Vector3(_followObjectTransform.position.x + _followObjectTransformXOffset, 
+                                        _followObjectTransform.position.y + _followObjectTransformYOffset, 0f);
+            _cachedFinalTransform = _newTransform;
+        }
+    }
     
     
     public void IntroAnimation()

@@ -8,6 +8,7 @@ public class WeaponController : MonoBehaviour
     public WeaponDataSO ConstantValue;
     [SerializeField, HighlightIfNull] List<WeaponDataSO> _weapons = new List<WeaponDataSO>();
     private WeaponDataSO _weapon;
+    public bool shootDisabled = false;
     [SerializeField, HighlightIfNull] Transform _firePoint;
 
     private void Awake()
@@ -57,7 +58,10 @@ public class WeaponController : MonoBehaviour
 
     public void Fire()
     {
-          WeaponDataSO _weaponToUse = UseConstant ? ConstantValue : _weapon;
-          if (_weaponToUse != null) {_weaponToUse.FireGun(_firePoint);}
+        if (!shootDisabled)
+        {
+            WeaponDataSO _weaponToUse = UseConstant ? ConstantValue : _weapon;
+            if (_weaponToUse != null) {_weaponToUse.FireGun(_firePoint);}
+        }
     }
 }

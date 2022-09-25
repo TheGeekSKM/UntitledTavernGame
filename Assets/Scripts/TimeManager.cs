@@ -19,6 +19,7 @@ public class TimeManager : MonoBehaviour
     //2. Switching to night mode activates spawners
     //3. ??
 
+    private WeaponController _weapon;
     public IntegerSO numOfDays;
     public int maxDays = 20;
     [SerializeField] int _maxSpawnDifficulty = 5;
@@ -46,6 +47,7 @@ public class TimeManager : MonoBehaviour
     bool rand = false;
     [SerializeField, ShowIf("showDebug")] private TextMeshProUGUI _debugDayText;
 
+    GameObject[] _enemiesLeft;
 
 
     #region Singleton
@@ -65,6 +67,7 @@ public class TimeManager : MonoBehaviour
     #endregion
         _timer = GetComponent<Timer>();
         rand = showDebug;
+        
     }
 
 
@@ -78,6 +81,7 @@ public class TimeManager : MonoBehaviour
 
             e.MakeEnemiesHarder(numOfDays.value);
         }
+        _weapon = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<WeaponController>();
     }
 
     void Update()
@@ -140,11 +144,19 @@ public class TimeManager : MonoBehaviour
 
             e.MakeEnemiesHarder(numOfDays.value);
         }
+        _enemiesLeft = GameObject.FindGameObjectsWithTag("Enemy");
+        for (int i = _enemiesLeft.Length - 1; i >= 0 ; i--)
+        {
+           _enemiesLeft[i].GetComponent<Health>().Die();
+        }
+        _weapon.shootDisabled = true;
+        
     }
 
     void OnTimeSwitchNight()
     {
         _onTimeSwitchNight?.Invoke();
+        _weapon.shootDisabled = false;
         Debug.Log("IT IS NIGHT");
     }
 
