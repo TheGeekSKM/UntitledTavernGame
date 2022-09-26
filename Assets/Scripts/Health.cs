@@ -28,6 +28,7 @@ public class Health : MonoBehaviour, IDamageable
     private void Update()
     {
         if (_logHealth) {Debug.Log(gameObject.name + "'s HP: " + _currentHealth);}
+        if (_currentHealth <= 0) {Die();}
     }
 
     public void Damage(int _damageAmount)

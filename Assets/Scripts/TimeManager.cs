@@ -19,6 +19,7 @@ public class TimeManager : MonoBehaviour
     //2. Switching to night mode activates spawners
     //3. ??
 
+    #region Variables
     private WeaponController _weapon;
     public IntegerSO numOfDays;
     public int maxDays = 20;
@@ -31,6 +32,7 @@ public class TimeManager : MonoBehaviour
     [SerializeField] float _timeToCollectBones;
 
     [Header("Trap Settings")]
+    [SerializeField] GameObject _trapPrefab;
     [SerializeField] int _amountOfBonesToMakeTrap;
     [SerializeField] int _amountOfBonesToFixTrap;
     [SerializeField] float _timeToPlaceTrap;
@@ -39,6 +41,7 @@ public class TimeManager : MonoBehaviour
     [Header("References")]
     [SerializeField] UnityEvent _onTimeSwitchDay;
     [SerializeField] UnityEvent _onTimeSwitchNight;
+    [SerializeField] public List<TrapBehavior> _trapsList = new List<TrapBehavior>();
     [SerializeField] Inventory _playerInventory;
     [SerializeField, HighlightIfNull] GameObject _dayTimeMenu;
     [SerializeField] private Timer _timer;
@@ -49,6 +52,7 @@ public class TimeManager : MonoBehaviour
 
     GameObject[] _enemiesLeft;
 
+    #endregion
 
     #region Singleton
     public static TimeManager Instance { get; private set; }
@@ -70,7 +74,12 @@ public class TimeManager : MonoBehaviour
         
     }
 
+    public void AddToTraps(TrapBehavior _t)
+    {
+        _trapsList.Add(_t);
+    }
 
+    #region Main Unity Functions
     private void Start()
     {
         foreach (EnemyNonWaveSpawner e in _spawners)
@@ -99,8 +108,9 @@ public class TimeManager : MonoBehaviour
         if (_currentTime == TIME.DAY) {_dayTimeMenu.SetActive(true);}
         else {_dayTimeMenu.SetActive(false); }
     }
+#endregion
 
-    #region DayTime Buttons
+    #region DayTime Shopping Buttons
 
 
     public void CollectBones()
@@ -116,20 +126,27 @@ public class TimeManager : MonoBehaviour
         _timer.SetTime(TIME.NIGHT);
         
     }
-    public void PlaceTraps()
+    public void BuyPlaceTraps()
     {
-        Debug.Log("WIP");
+        if (_playerInventory._numOfBones < _amountOfBonesToMakeTrap)
+        {
+            Debug.Log("Not enough bones to make a trap");
+        }
+        else
+        {
+            _playerInventory._numOfBones -= _amountOfBonesToMakeTrap;
+            AddToTraps(Instantiate(_trapPrefab, new Vector3(Random.Range(-7f, 7f), Random.Range(-7f, 7f), 0f), Quaternion.identity).GetComponent<TrapBehavior>());
+            Debug.Log($"You now have {_playerInventory._numOfBones} bones left.");
+        }
     }
 
-    public void FixTrapsPlaced()
-    {
-        Debug.Log("WIP");
-    }
    
 
 
     #endregion
 
+
+    #region Time Functions
     void OnTimeSwitch()
     {
         Debug.Log("IT IS DAY!");
@@ -217,6 +234,6 @@ public class TimeManager : MonoBehaviour
         }
     }
 
-    
+    #endregion
 
 }
