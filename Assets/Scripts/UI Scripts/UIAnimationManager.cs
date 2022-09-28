@@ -35,7 +35,7 @@ public class UIAnimationManager : MonoBehaviour
 
     public void ExitAnimation()
     {
-
+        LeanTween.move(_cachedOriginalTransform, _startTransform, 1f).setEase(LeanTweenType.easeInOutQuart);
     }
 
     public void IntroAndExitAnimation(float _timeToWait)

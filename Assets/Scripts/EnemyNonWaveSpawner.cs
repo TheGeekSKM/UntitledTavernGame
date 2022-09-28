@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyNonWaveSpawner : MonoBehaviour
 {
     public bool canSpawn = true;
+    [SerializeField] List<Transform> _targetsList = new List<Transform>();
     [SerializeField, HighlightIfNull] GameObject _meleeEnemy;
     [SerializeField, HighlightIfNull] GameObject _rangedEnemy;
     [SerializeField, HighlightIfNull] GameObject _miniBossEnemy;
@@ -34,6 +35,7 @@ public class EnemyNonWaveSpawner : MonoBehaviour
     void Awake()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
+        _targetsList.Insert(0, _player.transform);
     }
 
     void OnDrawGizmosSelected()
@@ -83,7 +85,7 @@ public class EnemyNonWaveSpawner : MonoBehaviour
                                     Random.Range(firstPoint.position.x, secondPoint.position.x), 
                                     Random.Range(firstPoint.position.y, secondPoint.position.y)), 
                                     Quaternion.identity);
-            if (_player != null) {_enemy.GetComponent<ObjectFollow>().SetTarget(_player.transform);}
+            if (_targetsList.Count > 0) {_enemy.GetComponent<ObjectFollow>().PopulateList(_targetsList);}
         }
 
         enemiesSpawned++;

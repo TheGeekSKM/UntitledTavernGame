@@ -73,6 +73,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98d68840e532e7f46a6533419e3d139f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rB: {fileID: 8206535646677347121}
+  _sprite: {fileID: 7892356605264300627}
+  _selectedSprite: {fileID: 21300000, guid: e7215d1620a3c324b85490ab2920adc5, type: 3}
   _damageAmount: 3
 --- !u!50 &8206535646677347121
 Rigidbody2D:

@@ -10,14 +10,23 @@ public class TrapBehavior : MonoBehaviour
     Vector3 _dragOffset;
     Camera _cam;
 
-    Rigidbody2D _rB;
+    [SerializeField] Rigidbody2D _rB;
+    [SerializeField] SpriteRenderer _sprite;
+    Sprite _originalSprite;
+    [SerializeField, HighlightIfNull] Sprite _selectedSprite;
  
+    void OnValidate()
+    {
+        if (_rB == null) {_rB = GetComponent<Rigidbody2D>();}
+        if (_sprite == null) {_sprite = GetComponentInChildren<SpriteRenderer>();}
+    }
 
     void Start()
     {
         TimeManager.Instance.AddToTraps(this);
-        _rB = GetComponent<Rigidbody2D>();
         _cam = Camera.main;
+        _originalSprite = _sprite.sprite;
+        
     }
 
     void Update()
@@ -41,6 +50,16 @@ public class TrapBehavior : MonoBehaviour
         {
             _rB.MovePosition(GetMousePosition() + _dragOffset);
         }
+    }
+
+    void OnMouseOver()
+    {
+        if (_draggable) {_sprite.sprite = _selectedSprite;}
+    }
+
+    void OnMouseExit()
+    {
+        _sprite.sprite = _originalSprite;    
     }
 
     Vector3 GetMousePosition()

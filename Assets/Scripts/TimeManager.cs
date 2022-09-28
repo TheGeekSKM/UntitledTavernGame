@@ -43,6 +43,7 @@ public class TimeManager : MonoBehaviour
     [SerializeField] UnityEvent _onTimeSwitchNight;
     [SerializeField] public List<TrapBehavior> _trapsList = new List<TrapBehavior>();
     [SerializeField] Inventory _playerInventory;
+    [SerializeField] GameObject _player;
     [SerializeField, HighlightIfNull] GameObject _dayTimeMenu;
     [SerializeField] private Timer _timer;
     [SerializeField] private List<EnemyNonWaveSpawner> _spawners = new List<EnemyNonWaveSpawner>();
@@ -52,6 +53,7 @@ public class TimeManager : MonoBehaviour
 
     GameObject[] _enemiesLeft;
 
+    public GameObject PlayerObject => _player;
     #endregion
 
     #region Singleton
@@ -108,7 +110,11 @@ public class TimeManager : MonoBehaviour
         if (_currentTime == TIME.DAY) {_dayTimeMenu.SetActive(true);}
         else {_dayTimeMenu.SetActive(false); }
     }
-#endregion
+    void OnValidate()
+    {
+        if (_player == null) {GameObject.FindGameObjectWithTag("Player");}
+    }
+    #endregion
 
     #region DayTime Shopping Buttons
 

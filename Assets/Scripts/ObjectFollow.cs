@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectFollow : MonoBehaviour{
-    // [SerializeField] private List<Transform> _targets = new List<Transform>();
+    [SerializeField] private List<Transform> _targets = new List<Transform>();
     [SerializeField] bool _isRangedEnemy = false;
     [SerializeField, ShowIf("_isRangedEnemy")] float _attackRange = 5f; 
     [SerializeField, ShowIf("_isRangedEnemy")] bool _isShooting = false; 
@@ -19,14 +19,16 @@ public class ObjectFollow : MonoBehaviour{
     [SerializeField] private Rigidbody2D rb;
     private Vector2 movement;
     private Transform _currentTarget;
-    private GameObject _player;
     float _tempMoveSpeed;
 
     // Start is called before the first frame update
     void Start(){
         rb = this.GetComponent<Rigidbody2D>();
-        _player = GameObject.FindGameObjectWithTag("Player");
         _tempMoveSpeed = moveSpeed;
+    }
+    public void PopulateList(List<Transform> _l)
+    {
+        _targets = _l;
     }
 
     void OnDrawGizmosSelected()
@@ -41,18 +43,9 @@ public class ObjectFollow : MonoBehaviour{
     void Update()
     {
         //Find the closest target
-        // if (_targets.Count > 0) 
-        // {
-        //     _currentTarget = SaiUtils.GetClosestTransform(_targets, transform);
-        // }
-
-        if (_player != null) 
+        if (_targets.Count > 0)
         {
-            _currentTarget = _player.transform;
-        }
-        else 
-        {
-            _currentTarget = transform;
+            _currentTarget = SaiUtils.GetClosestTransform(_targets, transform);
         }
 
         Vector2 direction = _currentTarget.position - transform.position;
