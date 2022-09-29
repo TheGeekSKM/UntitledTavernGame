@@ -8,6 +8,7 @@ public class Health : MonoBehaviour, IDamageable
     [SerializeField] private int _maxHealth;
     [SerializeField, ReadOnly] private int _currentHealth;
     [SerializeField] private bool _logHealth;
+    [SerializeField] private bool _isNPC;
 
     [SerializeField] private UnityEvent OnDeath;
     public int CurrentHealth
@@ -22,6 +23,7 @@ public class Health : MonoBehaviour, IDamageable
     private void Start()
     {
         if (resetHealthOnStart) { _currentHealth = _maxHealth; }
+        if (_isNPC) { TimeManager.Instance.AddNPC(this.gameObject.transform); }
     }
 
   
@@ -40,6 +42,9 @@ public class Health : MonoBehaviour, IDamageable
     public void Die()
     {
         OnDeath?.Invoke();
+
+        if (_isNPC) { TimeManager.Instance.RemoveNPC(this.gameObject.transform); }
+
         Destroy(gameObject);
     }
    

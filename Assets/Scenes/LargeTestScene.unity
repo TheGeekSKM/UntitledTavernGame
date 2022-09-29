@@ -1032,9 +1032,11 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _targets: []
   _trapsList: []
   _playerInventory: {fileID: 11400000, guid: e663884774790e24b8a9825ec407f22c, type: 2}
   _player: {fileID: 0}
+  _playerTransform: {fileID: 0}
   _dayTimeMenu: {fileID: 1108442423}
   _timer: {fileID: 0}
   _spawners:
@@ -3108,6 +3110,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2205139866950856713, guid: fb30c0be9c802db42a42e21f48a4c215, type: 3}
+      propertyPath: _isNPC
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2693013149806921372, guid: fb30c0be9c802db42a42e21f48a4c215, type: 3}
       propertyPath: m_Name
       value: Bill

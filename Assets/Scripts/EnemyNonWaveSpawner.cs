@@ -30,12 +30,9 @@ public class EnemyNonWaveSpawner : MonoBehaviour
         }
     }
 
-    private GameObject _player;
-
-    void Awake()
+    void Start()
     {
-        _player = GameObject.FindGameObjectWithTag("Player");
-        _targetsList.Insert(0, _player.transform);
+        _targetsList = TimeManager.Instance.GetTargets();
     }
 
     void OnDrawGizmosSelected()

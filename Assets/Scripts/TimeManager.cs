@@ -41,9 +41,11 @@ public class TimeManager : MonoBehaviour
     [Header("References")]
     [SerializeField] UnityEvent _onTimeSwitchDay;
     [SerializeField] UnityEvent _onTimeSwitchNight;
+    [SerializeField] List<Transform> _targets = new List<Transform>();
     [SerializeField] public List<TrapBehavior> _trapsList = new List<TrapBehavior>();
     [SerializeField] Inventory _playerInventory;
     [SerializeField] GameObject _player;
+    [SerializeField] Transform _playerTransform;
     [SerializeField, HighlightIfNull] GameObject _dayTimeMenu;
     [SerializeField] private Timer _timer;
     [SerializeField] private List<EnemyNonWaveSpawner> _spawners = new List<EnemyNonWaveSpawner>();
@@ -92,7 +94,9 @@ public class TimeManager : MonoBehaviour
 
             e.MakeEnemiesHarder(numOfDays.value);
         }
+        _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         _weapon = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<WeaponController>();
+        _targets.Insert(0, _playerTransform);
     }
 
     void Update()
@@ -241,5 +245,27 @@ public class TimeManager : MonoBehaviour
     }
 
     #endregion
+    #region NPC Functions
+    public void AddNPC(Transform _npc)
+    {
+        _targets.Add(_npc);
+    }
 
+    public void RemoveNPC(Transform _n)
+    {
+        _targets.Remove(_n);
+    }
+
+    public void CheckNPCS()
+    {
+        if (_targets.Count <= 0)
+        {
+            Debug.Log("All NPCS are dead. You Lose");
+        }
+    }
+    public List<Transform> GetTargets()
+    {
+        return _targets;
+    }
+    #endregion
 }

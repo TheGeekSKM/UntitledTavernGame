@@ -9,6 +9,7 @@ public class ObjectFollow : MonoBehaviour{
     [SerializeField, ShowIf("_isRangedEnemy")] bool _isShooting = false; 
     [SerializeField] bool _isBoss = false;
     [SerializeField, ShowIf("_isBoss")] float _shootingRange = 15f;
+    
     public bool IsShooting 
     {
         get
@@ -42,25 +43,28 @@ public class ObjectFollow : MonoBehaviour{
     // Update is called once per frame
     void Update()
     {
+        Vector2 direction = Vector2.zero;
+        _targets = TimeManager.Instance.GetTargets();
         //Find the closest target
-        if (_targets.Count > 0)
+        if (_targets.Count > 0 && _targets != null)
         {
             _currentTarget = SaiUtils.GetClosestTransform(_targets, transform);
         }
 
-        Vector2 direction = _currentTarget.position - transform.position;
+        if (_currentTarget != null) { direction = _currentTarget.position - transform.position;}
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         rb.rotation = angle;
         direction.Normalize();
         movement = direction;
     }
     private void FixedUpdate() {
-        moveCharacter(movement);
+        if (movement != null) {MoveCharacter(movement);}
     }
-    void moveCharacter(Vector2 direction){
+    void MoveCharacter(Vector2 direction){
+        if (direction == null) {direction = Vector2.zero;}
+        
         if (_isRangedEnemy)
         {
-            
             if (Vector2.Distance(transform.position, _currentTarget.position) <= _attackRange)
             {
                 moveSpeed = 0f;
