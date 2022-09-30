@@ -8,6 +8,7 @@ public class ObjectFollow : MonoBehaviour{
     [SerializeField, ShowIf("_isRangedEnemy")] float _attackRange = 5f; 
     [SerializeField, ShowIf("_isRangedEnemy")] bool _isShooting = false; 
     [SerializeField] bool _isBoss = false;
+    [SerializeField] bool _onlyTriggerPlayer = false;
     [SerializeField, ShowIf("_isBoss")] float _shootingRange = 15f;
     
     public bool IsShooting 
@@ -44,11 +45,14 @@ public class ObjectFollow : MonoBehaviour{
     void Update()
     {
         Vector2 direction = Vector2.zero;
-        _targets = TimeManager.Instance.GetTargets();
         //Find the closest target
-        if (_targets.Count > 0 && _targets != null)
+        if (_targets.Count > 0 && transform != null && !_onlyTriggerPlayer)
         {
-            _currentTarget = SaiUtils.GetClosestTransform(_targets, transform);
+            _currentTarget = SaiUtils.GetClosestTransform(TimeManager.Instance.GetTargets(), transform);
+        }
+        else
+        {
+            _currentTarget = TimeManager.Instance.GetTargets()[0];
         }
 
         if (_currentTarget != null) { direction = _currentTarget.position - transform.position;}
@@ -57,10 +61,35 @@ public class ObjectFollow : MonoBehaviour{
         direction.Normalize();
         movement = direction;
     }
-    private void FixedUpdate() {
-        if (movement != null) {MoveCharacter(movement);}
+    private void FixedUpdate()
+    {
+        if (movement == null || rb == null)
+        {
+            return;
+        }
+        if (movement == null) { movement = Vector2.zero; }
+
+        if (_isRangedEnemy)
+        {
+            if (Vector2.Distance(transform.position, _currentTarget.position) <= _attackRange)
+            {
+                moveSpeed = 0f;
+                _isShooting = true;
+            }
+            else
+            {
+                _isShooting = false;
+                moveSpeed = _tempMoveSpeed;
+                rb.MovePosition((Vector2)transform.position + (moveSpeed * Time.deltaTime * movement));
+            }
+        }
+        else
+        {
+            rb.MovePosition((Vector2)transform.position + (moveSpeed * Time.deltaTime * movement));
+        }
     }
-    void MoveCharacter(Vector2 direction){
+
+    void MoveCharacterFunction(Vector2 direction){
         if (direction == null) {direction = Vector2.zero;}
         
         if (_isRangedEnemy)
@@ -74,7 +103,7 @@ public class ObjectFollow : MonoBehaviour{
             {
                 _isShooting = false;
                 moveSpeed = _tempMoveSpeed;
-                rb.MovePosition((Vector2)transform.position + (direction * moveSpeed * Time.deltaTime));
+                rb.MovePosition((Vector2)transform.position + (moveSpeed * Time.deltaTime * direction));
             }
         }
         else if (_isBoss)
@@ -89,12 +118,12 @@ public class ObjectFollow : MonoBehaviour{
             else
             {
                 moveSpeed = _tempMoveSpeed;
-                rb.MovePosition((Vector2)transform.position + (direction * moveSpeed * Time.deltaTime));
+                rb.MovePosition((Vector2)transform.position + (moveSpeed * Time.deltaTime * direction));
             }
         }
         else
         {
-            rb.MovePosition((Vector2)transform.position + (direction * moveSpeed * Time.deltaTime));
+            rb.MovePosition((Vector2)transform.position + (moveSpeed * Time.deltaTime * direction));
         }
         
     }

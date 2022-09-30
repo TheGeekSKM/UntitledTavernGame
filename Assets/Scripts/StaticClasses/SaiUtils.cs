@@ -20,8 +20,9 @@ public static class SaiUtils
                 _minDistance = dist;
             }
         }
-        return _minTransform;
-   }
+        if (_minTransform == null) { return _currentPosition; }
+        else { return _minTransform; }
+    }
 
    public static Transform GetClosestEnemy(List<EnemyBase> _components, Transform _currentPosition)
    {
@@ -39,7 +40,9 @@ public static class SaiUtils
                 _minDistance = _dist;
             }
         }
-        return _minTransform;
+
+        if (_minTransform == null) { return _currentPosition; }
+        else { return _minTransform; }
    }
 
    public static bool IsMouseOverUi

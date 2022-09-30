@@ -55,7 +55,7 @@ public class EnemyNonWaveSpawner : MonoBehaviour
         }
 
         //Only allows Spawns at Night
-        if (TimeManager.Instance._currentTime == TIME.NIGHT)
+        if (TimeManager.Instance.TimerThing.timeCurrently > 1300f || TimeManager.Instance.TimerThing.timeCurrently < 360f)
         {
             if (Time.time >= _timeToSpawn)
             {
@@ -82,7 +82,6 @@ public class EnemyNonWaveSpawner : MonoBehaviour
                                     Random.Range(firstPoint.position.x, secondPoint.position.x), 
                                     Random.Range(firstPoint.position.y, secondPoint.position.y)), 
                                     Quaternion.identity);
-            if (_targetsList.Count > 0) {_enemy.GetComponent<ObjectFollow>().PopulateList(_targetsList);}
         }
 
         enemiesSpawned++;

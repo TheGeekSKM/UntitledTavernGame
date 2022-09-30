@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using TMPro;
 
 public class Health : MonoBehaviour, IDamageable
 {
     [SerializeField] private int _maxHealth;
     [SerializeField, ReadOnly] private int _currentHealth;
     [SerializeField] private bool _logHealth;
+    [SerializeField, ShowIf("_logHealth")] TextMeshProUGUI _healthLog;
     [SerializeField] private bool _isNPC;
 
     [SerializeField] private UnityEvent OnDeath;
@@ -29,7 +31,8 @@ public class Health : MonoBehaviour, IDamageable
   
     private void Update()
     {
-        if (_logHealth) {Debug.Log(gameObject.name + "'s HP: " + _currentHealth);}
+        //if (_logHealth) {Debug.Log(gameObject.name + "'s HP: " + _currentHealth);}
+        if (_healthLog != null) { _healthLog.text = $"Health: {_currentHealth}"; }
         if (_currentHealth <= 0) {Die();}
     }
 

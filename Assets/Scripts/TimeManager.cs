@@ -34,9 +34,8 @@ public class TimeManager : MonoBehaviour
     [Header("Trap Settings")]
     [SerializeField] GameObject _trapPrefab;
     [SerializeField] int _amountOfBonesToMakeTrap;
-    [SerializeField] int _amountOfBonesToFixTrap;
     [SerializeField] float _timeToPlaceTrap;
-    [SerializeField] float _timeToFixTrap;
+
     
     [Header("References")]
     [SerializeField] UnityEvent _onTimeSwitchDay;
@@ -56,6 +55,7 @@ public class TimeManager : MonoBehaviour
     GameObject[] _enemiesLeft;
 
     public GameObject PlayerObject => _player;
+    public Timer TimerThing => _timer;
     #endregion
 
     #region Singleton
@@ -145,7 +145,8 @@ public class TimeManager : MonoBehaviour
         else
         {
             _playerInventory._numOfBones -= _amountOfBonesToMakeTrap;
-            AddToTraps(Instantiate(_trapPrefab, new Vector3(Random.Range(-7f, 7f), Random.Range(-7f, 7f), 0f), Quaternion.identity).GetComponent<TrapBehavior>());
+            Instantiate(_trapPrefab, new Vector3(Random.Range(-7f, 7f), Random.Range(-7f, 7f), 0f), Quaternion.identity).GetComponent<TrapBehavior>();
+            _timer.AddTime(_timeToPlaceTrap);
             Debug.Log($"You now have {_playerInventory._numOfBones} bones left.");
         }
     }
@@ -190,7 +191,8 @@ public class TimeManager : MonoBehaviour
    
     public void SwitchTime()
     {
-        _timer.AddTime(720f);
+        if (_currentTime == TIME.DAY) { _timer.SetTime(TIME.NIGHT); }
+        else { _timer.SetTime(TIME.DAY); }
         Debug.Log(_timer.timeCurrently);
         CheckTime();
         

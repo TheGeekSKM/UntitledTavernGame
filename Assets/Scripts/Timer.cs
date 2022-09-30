@@ -27,7 +27,7 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(stopTimer);
+        //Debug.Log(stopTimer);
         if (!stopTimer)
         {
             timeCurrently += Time.deltaTime * timeMultiplier;
@@ -65,11 +65,11 @@ public class Timer : MonoBehaviour
     {
         if (timeSetting == TIME.DAY)
         {
-            timeCurrently = 360f;
+            timeCurrently = 355f;
         }
         if (timeSetting == TIME.NIGHT)
         {
-            timeCurrently = 1200f;
+            timeCurrently = 1195f;
         }
     }
    
