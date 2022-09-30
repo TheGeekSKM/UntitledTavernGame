@@ -23,5 +23,10 @@ public class PickupBase : MonoBehaviour
         Destroy(gameObject);
     }
 
+    void Update()
+    {
+        if (transform.position.x > 20) {transform.position = new Vector3(19f, transform.position.y, transform.position.z);}
+    }
+
    
 }

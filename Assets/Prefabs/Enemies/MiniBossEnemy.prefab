@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4358007756456462464}
   - component: {fileID: 1194667803954384169}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50,6 +50,7 @@ MonoBehaviour:
   ConstantValue: {fileID: 11400000, guid: 133017b9bc92f1d408be273dd16398ef, type: 2}
   _weapons:
   - {fileID: 11400000, guid: 133017b9bc92f1d408be273dd16398ef, type: 2}
+  shootDisabled: 0
   _firePoint: {fileID: 3664926079809336635}
 --- !u!1 &4722911435152847710
 GameObject:
@@ -61,7 +62,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3698741387401208135}
   - component: {fileID: 7543896504932475693}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,7 +145,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3664926079809336635}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +176,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6401819791450342855}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Art
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -209,7 +210,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6401819791625837796}
   - component: {fileID: 6401819791625837799}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Facing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -293,7 +294,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6401819792581753380}
   - component: {fileID: 6401819792581753383}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EnemyBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -381,7 +382,7 @@ GameObject:
   - component: {fileID: 6401819792585557635}
   - component: {fileID: 6401819792585557636}
   - component: {fileID: 8582488895898962710}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MiniBossEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -454,9 +455,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1162f53c69c6e4c43a19dd9f3f96f5c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 3
+  _maxHealth: 7
   _currentHealth: 0
   _logHealth: 0
+  _healthLog: {fileID: 0}
+  _isNPC: 0
   OnDeath:
     m_PersistentCalls:
       m_Calls:
@@ -485,10 +488,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dca89fb387c49f642a36a46bfb7236dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _targets: []
   _isRangedEnemy: 0
   _attackRange: 2
   _isShooting: 0
   _isBoss: 1
+  _onlyTriggerPlayer: 0
   _shootingRange: 15
   moveSpeed: 2
   rb: {fileID: 6401819792585557632}
@@ -522,7 +527,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8692845551657344528}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Art
   m_TagString: Untagged
   m_Icon: {fileID: 0}

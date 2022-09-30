@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5055545589117018716}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5055545589168029805}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Art
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5055545589604168920}
   - component: {fileID: 5055545589604168921}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WeaponBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 5055545590051373104}
   - component: {fileID: 5055545590051373105}
   - component: {fileID: 1472971831}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -252,7 +252,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 10
   _currentHealth: 0
-  _logHealth: 0
+  _logHealth: 1
+  _healthLog: {fileID: 0}
+  _isNPC: 0
   OnDeath:
     m_PersistentCalls:
       m_Calls:
@@ -282,6 +284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inventory: {fileID: 11400000, guid: e663884774790e24b8a9825ec407f22c, type: 2}
+  _text: {fileID: 0}
 --- !u!1 &5055545590276433902
 GameObject:
   m_ObjectHideFlags: 0
@@ -292,7 +295,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5055545590276433903}
   - component: {fileID: 5055545590276433896}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -376,7 +379,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5055545590999291789}
   - component: {fileID: 5055545590999291790}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -415,4 +418,5 @@ MonoBehaviour:
   ConstantValue: {fileID: 11400000, guid: 1fb05fe9b51edc24aa2e0512a68188e6, type: 2}
   _weapons:
   - {fileID: 11400000, guid: 1fb05fe9b51edc24aa2e0512a68188e6, type: 2}
+  shootDisabled: 0
   _firePoint: {fileID: 5055545589117018716}

@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class DialogueManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] IntegerReference _numberOfDays;
+    bool _cutsceneOneTriggered = false;
+    bool _cutsceneTwoTriggered = false;
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (_numberOfDays.Value == 1 && !_cutsceneOneTriggered)
+        {
+            Debug.Log("Play Cutscene 1");
+            _cutsceneOneTriggered = true;
+        }
+
+        if (_numberOfDays.Value == 7 && !_cutsceneTwoTriggered)
+        {
+            //Introduce NPCS
+            Debug.Log("Introduce NPCs");
+            _cutsceneTwoTriggered = true;
+        }
     }
 }

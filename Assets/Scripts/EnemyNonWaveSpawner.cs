@@ -82,6 +82,7 @@ public class EnemyNonWaveSpawner : MonoBehaviour
                                     Random.Range(firstPoint.position.x, secondPoint.position.x), 
                                     Random.Range(firstPoint.position.y, secondPoint.position.y)), 
                                     Quaternion.identity);
+            _enemy.GetComponent<ObjectFollow>().PopulateList(_targetsList);
         }
 
         enemiesSpawned++;

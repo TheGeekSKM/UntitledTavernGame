@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6401819791450342855}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Art
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6401819791625837796}
   - component: {fileID: 6401819791625837799}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Facing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6401819792581753380}
   - component: {fileID: 6401819792581753383}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EnemyBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 6401819792585557635}
   - component: {fileID: 6401819792585557636}
   - component: {fileID: 6401819792585557639}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MeleeEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -290,6 +290,8 @@ MonoBehaviour:
   _maxHealth: 3
   _currentHealth: 0
   _logHealth: 0
+  _healthLog: {fileID: 0}
+  _isNPC: 0
   OnDeath:
     m_PersistentCalls:
       m_Calls:
@@ -318,10 +320,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dca89fb387c49f642a36a46bfb7236dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _targets: []
   _isRangedEnemy: 0
   _attackRange: 5
   _isShooting: 0
   _isBoss: 0
+  _onlyTriggerPlayer: 0
   _shootingRange: 15
   moveSpeed: 2
   rb: {fileID: 6401819792585557632}

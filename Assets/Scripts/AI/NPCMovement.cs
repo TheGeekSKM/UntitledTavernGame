@@ -9,7 +9,10 @@ public class NPCMovement : MonoBehaviour
     [SerializeField] Rigidbody2D _rB;
     [SerializeField, ReadOnly] bool _isWalking;
     [SerializeField] float _walkTime;
+    [SerializeField] bool _randomizeWalkTime;
     [SerializeField] float _waitTime;
+    [SerializeField] bool _randomizeWaitTime;
+
     [SerializeField, ReadOnly] float _walkCounter;
     [SerializeField, ReadOnly] float _waitCounter;
 
@@ -24,6 +27,9 @@ public class NPCMovement : MonoBehaviour
         _waitCounter = _waitTime;
         _walkCounter = _walkTime;
 
+        if (_randomizeWalkTime) {_walkTime = Random.Range(_walkTime, _walkTime + 3);}
+        if (_randomizeWaitTime) {_waitTime = Random.Range(_waitTime - 3, _waitTime);}
+
         ChooseDirection();
     }
 
@@ -37,6 +43,7 @@ public class NPCMovement : MonoBehaviour
         if (_isWalking)
         {
             _walkCounter -= Time.deltaTime;
+            //if (_randomizeWaitTime) {_waitTime = Random.Range(_waitTime - 3, _waitTime);}
             switch (_directionNumber)
             {
                 case 0:
@@ -61,6 +68,7 @@ public class NPCMovement : MonoBehaviour
         {
             _waitCounter -= Time.deltaTime;
             _rB.velocity = Vector2.zero;
+            //if (_randomizeWalkTime) {_walkTime = Random.Range(_walkTime, _walkTime + 3);}
             
             if (_waitCounter < 0)
             {
