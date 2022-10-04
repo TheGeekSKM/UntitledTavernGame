@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class WeaponController : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class WeaponController : MonoBehaviour
     private WeaponDataSO _weapon;
     public bool shootDisabled = false;
     [SerializeField, HighlightIfNull] Transform _firePoint;
+    [SerializeField] UnityEvent OnFire;
 
     private void Awake()
     {
@@ -60,6 +62,7 @@ public class WeaponController : MonoBehaviour
     {
         if (!shootDisabled)
         {
+            OnFire?.Invoke();
             WeaponDataSO _weaponToUse = UseConstant ? ConstantValue : _weapon;
             if (_weaponToUse != null) {_weaponToUse.FireGun(_firePoint);}
         }
