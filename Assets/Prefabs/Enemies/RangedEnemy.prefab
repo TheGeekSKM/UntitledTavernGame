@@ -321,7 +321,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _targets: []
   _isRangedEnemy: 1
-  _attackRange: 15
+  _attackRange: 7
   _isShooting: 0
   _isBoss: 0
   _onlyTriggerPlayer: 0

@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 7945568636109403383}
   - component: {fileID: 1715423443711959027}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: PlayerBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -158,7 +158,7 @@ MonoBehaviour:
   _particles: {fileID: 4736948584246130528, guid: 0537d42b495a4c64d938a38447803168, type: 3}
   _maskToIgnore:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 256
 --- !u!58 &7945568636109403383
 CircleCollider2D:
   m_ObjectHideFlags: 0

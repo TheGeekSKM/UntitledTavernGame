@@ -35,9 +35,10 @@ public class PlayerMovement : MonoBehaviour
 
         _moveDirection = new Vector2(moveX, moveY).normalized;
         _mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-         Vector2 aimDirection = _mousePosition - _rb.position;
+        Vector2 aimDirection = _mousePosition - _rb.position;
         float aimAngle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg - 90f;
         _rb.rotation = aimAngle;
+
     }
 
     private void FixedUpdate()

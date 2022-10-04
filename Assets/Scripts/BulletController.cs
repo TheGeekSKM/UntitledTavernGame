@@ -5,10 +5,10 @@ using UnityEditor;
 
 public class BulletController : MonoBehaviour
 {
-    [SerializeField] private float lifeTime = 5f;
     [SerializeField] private int _bulletDamage = 1;
-    [SerializeField, ReadOnly] private bool _collided = false;
     [SerializeField] Rigidbody2D _rB;
+    [SerializeField, HighlightIfNull] GameObject _particles;
+    [SerializeField] LayerMask _maskToIgnore;
 
     public int BulletDamage 
     {
@@ -20,32 +20,26 @@ public class BulletController : MonoBehaviour
     {
         if (_rB == null) {_rB = GetComponent<Rigidbody2D>();}
     }
-   
-    
-    private void Awake()
+
+
+    void Start()
     {
-        StartCoroutine("DestroyTime");    
+        Instantiate(_particles, transform.position, Quaternion.identity);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        _collided = true;
-
+        if (other.gameObject.layer != _maskToIgnore) {Instantiate(_particles, transform.position, Quaternion.identity);}
+        
         IDamageable _damageable = other.gameObject.GetComponent<IDamageable>();
-        if (_damageable != null)
+        if (_damageable != null && other.gameObject.layer != _maskToIgnore)
         {
+            
             _damageable.Damage(_bulletDamage);
         }
        
-
        Destroy(gameObject);
     }
 
-   
 
-    IEnumerator DestroyTime()
-    {
-        yield return new WaitForSeconds(lifeTime);
-        if (!_collided) { Destroy(gameObject); }
-    }
 }
