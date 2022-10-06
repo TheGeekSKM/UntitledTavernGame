@@ -32,12 +32,15 @@ public class PlayerMovement : MonoBehaviour
         {
             _weapon.Fire();
         }
-
         _moveDirection = new Vector2(moveX, moveY).normalized;
         _mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 aimDirection = _mousePosition - _rb.position;
-        float aimAngle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg - 90f;
-        _rb.rotation = aimAngle;
+
+        //Transform
+        // Vector2 direction = _mousePosition - _rb.position;
+        // float angle = Vector2.SignedAngle(Vector2.right, direction);
+        // transform.eulerAngles = new Vector3 (0, 0, angle);
+
+        
 
     }
 
@@ -46,8 +49,13 @@ public class PlayerMovement : MonoBehaviour
         // _rb.velocity = new Vector2(_moveDirection.x * _moveSpeed, _moveDirection.y * _moveSpeed );
         _rb.MovePosition(new Vector2((transform.position.x + _moveDirection.x * _moveSpeed * Time.deltaTime),
             transform.position.y + _moveDirection.y * _moveSpeed * Time.deltaTime));
-            
-        //Mouse Rotation Facing
+
+        
+        
+        Vector2 aimDirection = _mousePosition - _rb.position;
+        float aimAngle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg - 90f;
+        _rb.rotation = aimAngle;
+        
        
     }
 }

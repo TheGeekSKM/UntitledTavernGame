@@ -86,6 +86,7 @@ public class TimeManager : MonoBehaviour
     #region Main Unity Functions
     private void Start()
     {
+        Cursor.visible = false;
         foreach (EnemyNonWaveSpawner e in _spawners)
         {
             e.TimeBetweenWaves = CalculateDifficulty(numOfDays.value);
