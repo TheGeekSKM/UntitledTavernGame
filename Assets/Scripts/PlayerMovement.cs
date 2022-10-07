@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     
     void Update()
     {
+        Cursor.visible = true;
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
 

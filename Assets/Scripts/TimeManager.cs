@@ -75,7 +75,7 @@ public class TimeManager : MonoBehaviour
     #endregion
         _timer = GetComponent<Timer>();
         rand = showDebug;
-        
+        Cursor.visible = true;
     }
 
     public void AddToTraps(TrapBehavior _t)
