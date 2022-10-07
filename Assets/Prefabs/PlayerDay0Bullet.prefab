@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 7945568636109403383}
   - component: {fileID: 1715423443711959027}
   m_Layer: 14
-  m_Name: Bullet
+  m_Name: PlayerDay0Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -153,12 +153,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14d0fde43175e024ba46be05daa65584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletDamage: 1
+  _bulletDamage: 0
   _rB: {fileID: 8026314258934667205}
-  _particles: {fileID: 3852790315360950431, guid: 87e582395cf42304280ef49041ccbdd8, type: 3}
+  _particles: {fileID: 4244371339144815934, guid: 0d1f1e05af5e4614e86df8f0940faa55, type: 3}
   _maskToIgnore:
     serializedVersion: 2
-    m_Bits: 6272
+    m_Bits: 256
 --- !u!58 &7945568636109403383
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -292,8 +292,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.0141509175, g: 0.12875779, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 0.3490566, g: 0.3490566, b: 0.3490566, a: 1}
+      key1: {r: 0.1509434, g: 0.1509434, b: 0.1509434, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}

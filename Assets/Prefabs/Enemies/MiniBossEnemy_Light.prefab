@@ -535,8 +535,9 @@ GameObject:
   - component: {fileID: 6401819792585557635}
   - component: {fileID: 6401819792585557636}
   - component: {fileID: 8582488895898962710}
+  - component: {fileID: -8766845309754126194}
   m_Layer: 12
-  m_Name: MiniBossEnemy
+  m_Name: MiniBossEnemy_Light
   m_TagString: Enemy
   m_Icon: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -672,6 +673,42 @@ MonoBehaviour:
   startTimeBetweenShots: 1
   _weapon: {fileID: 1194667803954384169}
   _follow: {fileID: 6401819792585557636}
+--- !u!114 &-8766845309754126194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6401819792585557644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 0
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000c10ac735
+  m_ShapePath:
+  - {x: -0.2982111, y: 0.65135574, z: 0}
+  - {x: -0.50107145, y: 0.4692788, z: 0}
+  - {x: -0.5403094, y: 0.17106771, z: 0}
+  - {x: -0.5324621, y: -0.23701048, z: 0}
+  - {x: -0.43829012, y: -0.48028803, z: 0}
+  - {x: -0.21188688, y: -0.6435082, z: 0}
+  - {x: 0.11889362, y: -0.802042, z: 0}
+  - {x: 0.77024937, y: -0.9119091, z: 0}
+  - {x: 1.5864058, y: -0.77065134, z: 0}
+  - {x: 2.1424112, y: -0.71413684, z: 0}
+  - {x: 2.089221, y: 0.9129071, z: 0}
+  - {x: 0.6446867, y: 0.9950719, z: 0}
+  - {x: 0.03256941, y: 0.9087477, z: 0}
+  m_ShapePathHash: -1747263977
+  m_Mesh: {fileID: 0}
+  m_InstanceId: 55250
 --- !u!1 &6826443945299322653
 GameObject:
   m_ObjectHideFlags: 0

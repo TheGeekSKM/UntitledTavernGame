@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 425629478375647957}
   - component: {fileID: 3820272787689429577}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 1762696166129161067}
   - component: {fileID: 7945568636109403383}
   - component: {fileID: 1715423443711959027}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: PlayerBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -198,7 +198,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1417718736260368382}
   - component: {fileID: 3008762983433583693}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: TrailCreator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -337,7 +337,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6087250501458310264}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Art
   m_TagString: Untagged
   m_Icon: {fileID: 0}

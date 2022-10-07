@@ -1,5 +1,6 @@
 
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Timer : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class Timer : MonoBehaviour
     [SerializeField, ReadOnly] public string hourlyTime = "";
     [SerializeField, ReadOnly] public Vector2 hourlyTimeNumber;
     [SerializeField, ReadOnly] public bool stopTimer = false;
+    [SerializeField] UnityEvent _onDayTime;
+    [SerializeField] UnityEvent _onNightTime;
 
 
 
@@ -31,9 +34,12 @@ public class Timer : MonoBehaviour
         if (!stopTimer)
         {
             timeCurrently += Time.deltaTime * timeMultiplier;
-        
+
             
         }
+
+        if (timeCurrently == 360f) { _onDayTime?.Invoke(); }
+        if (timeCurrently == 1200f) { _onNightTime?.Invoke(); }
 
         float minutes = Mathf.FloorToInt(timeCurrently / 60);
         float seconds = Mathf.FloorToInt(timeCurrently % 60);

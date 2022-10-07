@@ -46,14 +46,19 @@ public class ObjectFollow : MonoBehaviour{
     {
         Vector2 direction = Vector2.zero;
         //Find the closest target
-        if (_targets.Count > 0 && transform != null && !_onlyTriggerPlayer)
-        {
-            _currentTarget = SaiUtils.GetClosestTransform(TimeManager.Instance.GetTargets(), transform);
-        }
-        else
-        {
-            _currentTarget = TimeManager.Instance.GetTargets()[0];
-        }
+       if (TimeManager.Instance != null)
+       {
+            if (_targets.Count > 0 && transform != null && !_onlyTriggerPlayer)
+            {
+                _currentTarget = SaiUtils.GetClosestTransform(TimeManager.Instance.GetTargets(), transform);
+            }
+            else
+            {
+                _currentTarget = TimeManager.Instance.GetTargets()[0];
+            }
+       }
+       else
+       {_currentTarget = _targets[0];}
 
         if (_currentTarget != null) { direction = _currentTarget.position - transform.position;}
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;

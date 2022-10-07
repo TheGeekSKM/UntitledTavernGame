@@ -17,6 +17,8 @@ public class EnemyNonWaveSpawner : MonoBehaviour
     [SerializeField] float _timeToSpawn;
     private float _timeBetweenWaves = 5f;
     [SerializeField, ReadOnly] int enemiesSpawned = 0;
+    [SerializeField] bool _spawnRegardless = false;
+    [SerializeField] bool _overrideTarget = false;
     public int EnemiesSpawned => enemiesSpawned;
     public float TimeBetweenWaves 
     {
@@ -32,7 +34,8 @@ public class EnemyNonWaveSpawner : MonoBehaviour
 
     void Start()
     {
-        _targetsList = TimeManager.Instance.GetTargets();
+        if (!_overrideTarget) {_targetsList = TimeManager.Instance.GetTargets();}
+        
     }
 
     void OnDrawGizmosSelected()
@@ -55,7 +58,18 @@ public class EnemyNonWaveSpawner : MonoBehaviour
         }
 
         //Only allows Spawns at Night
-        if (TimeManager.Instance.TimerThing.timeCurrently > 1300f || TimeManager.Instance.TimerThing.timeCurrently < 360f)
+        if (TimeManager.Instance != null && !_spawnRegardless)
+        {
+            if (TimeManager.Instance.TimerThing.timeCurrently > 1300f || TimeManager.Instance.TimerThing.timeCurrently < 360f)
+            {
+                if (Time.time >= _timeToSpawn)
+                {
+                    Spawn();
+                    _timeToSpawn = Time.time + Random.Range(0.1f, TimeBetweenWaves);
+                }   
+            }
+        }
+        else if (_spawnRegardless)
         {
             if (Time.time >= _timeToSpawn)
             {

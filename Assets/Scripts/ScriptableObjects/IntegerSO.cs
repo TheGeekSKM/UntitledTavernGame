@@ -6,5 +6,10 @@ using UnityEngine;
 public class IntegerSO : ScriptableObject
 {
     public int value;
+
+    public void AddValue(int num)
+    {
+        value += num;
+    }
 }
 
