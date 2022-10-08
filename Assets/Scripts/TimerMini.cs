@@ -26,7 +26,7 @@ public class TimerMini : MonoBehaviour
         }
     }
 
-    void Switch()
+    public void Switch()
     {
         SceneManager.LoadScene(_sceneName);
     }

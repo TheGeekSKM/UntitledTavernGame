@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class MainManuController : MonoBehaviour
 {
-    [SerializeField] string _GameSceneName;
+    [SerializeField] int _GameSceneIndex;
     public void PlayGame()
     {
-        SceneManager.LoadScene(_GameSceneName);
+        SceneManager.LoadScene(_GameSceneIndex);
     }
 
     public void ExitGame()

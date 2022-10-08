@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30e8c4d98a534c34ebbf2ff68a8237e4, type: 3}
   m_Name: NumOfDays
   m_EditorClassIdentifier: 
-  value: 7
+  value: 0
