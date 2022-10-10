@@ -11,6 +11,7 @@ public class DamagePickUp : PickupBase
             var _tempHealth = collision.gameObject.GetComponentInChildren<WeaponController>();
             if (_tempHealth != null) { _tempHealth.Weapon._weaponDamage += value; }
         }
-        Destroy(gameObject);
+        base.OnPickUp(collision);
+
     }
 }

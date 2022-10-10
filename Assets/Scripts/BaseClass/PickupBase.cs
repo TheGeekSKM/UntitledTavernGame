@@ -7,6 +7,7 @@ public class PickupBase : MonoBehaviour
 {
     [SerializeField] protected int value = 1;
     [SerializeField] protected UnityEvent _onPick;
+    [SerializeField] GameObject _OnPickParticle;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -20,6 +21,7 @@ public class PickupBase : MonoBehaviour
 
     protected virtual void OnPickUp(Collider2D collision)
     {
+        if (_OnPickParticle != null) {Instantiate(_OnPickParticle, transform.position, Quaternion.identity);}
         Destroy(gameObject);
     }
 
