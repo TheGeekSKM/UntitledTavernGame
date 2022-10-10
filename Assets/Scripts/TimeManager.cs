@@ -28,6 +28,8 @@ public class TimeManager : MonoBehaviour
     private bool _timeSwitchNightUpdate = false;
     public TIME _currentTime = TIME.DAY;
 
+    [SerializeField] int numOfVillagers;
+
     [Header("Resource Collection")]
     [SerializeField] float _timeToCollectBones;
 
@@ -75,6 +77,7 @@ public class TimeManager : MonoBehaviour
     #endregion
         _timer = GetComponent<Timer>();
         rand = showDebug;
+        numOfVillagers = 4;
         Cursor.visible = true;
     }
 
@@ -102,9 +105,9 @@ public class TimeManager : MonoBehaviour
 
     void Update()
     {
-        if (_debugDayText != null) {_debugDayText.text = $"Day: {numOfDays.value}, Time: {_timer.hourlyTime}";}
+        if (_debugDayText != null) {_debugDayText.text = $"Day: #{numOfDays.value}, Time: {_timer.hourlyTime}";}
         
-         if (numOfDays.value > 20) {SceneManager.LoadScene("WinScreen");}
+         if (numOfDays.value > 20) {SceneManager.LoadScene("WinDialogue");}
         //Keep at Bottom
         CheckTime();
     
@@ -213,6 +216,16 @@ public class TimeManager : MonoBehaviour
     public void OnPlayerDeath()
     {
         SceneManager.LoadScene("LoseScreen");
+    }
+
+    public void OnNPCDeath()
+    {
+        numOfVillagers--;
+
+        if (numOfVillagers <= 0)
+        {
+            OnPlayerDeath();
+        }
     }
 
     public void CheckTime()

@@ -7,6 +7,7 @@ public class UIAnimationManager : MonoBehaviour
     [SerializeField] RectTransform _cachedOriginalTransform;
     [SerializeField] Vector3 _cachedFinalTransform;
     [SerializeField] Vector3 _startTransform;
+    [SerializeField] bool _runOnStart = false;
     [SerializeField] bool _followObject;
     [SerializeField, ShowIf("_followObject"), HighlightIfNull] Transform _followObjectTransform;
     [SerializeField, ShowIf("_followObject")] float _followObjectTransformXOffset;
@@ -24,6 +25,11 @@ public class UIAnimationManager : MonoBehaviour
             Vector3 _newTransform = new Vector3(_followObjectTransform.position.x + _followObjectTransformXOffset, 
                                         _followObjectTransform.position.y + _followObjectTransformYOffset, 0f);
             _cachedFinalTransform = _newTransform;
+        }
+
+        if (_runOnStart)
+        {
+            IntroAndExitAnimation(2f);
         }
     }
     

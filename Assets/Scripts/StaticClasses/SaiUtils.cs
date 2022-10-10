@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
+
 
 public static class SaiUtils
 {
@@ -52,6 +54,15 @@ public static class SaiUtils
             var events = EventSystem.current;
             return events != null && events.IsPointerOverGameObject();
         }
+    }
+    public static void SwitchScene(int index)
+    {
+        SceneManager.LoadScene(index);
+    }
+
+    public static void SwitchNextScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
 }

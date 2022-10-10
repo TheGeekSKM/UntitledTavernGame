@@ -15,8 +15,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Day0Scene.unity
     guid: 4786d741e44831d4a8b6087dc7580875
   - enabled: 1
+    path: Assets/Scenes/FirstDialogueScene_AfterDay0.unity
+    guid: 82ef770dff8904c40b5347bc6c86bcc7
+  - enabled: 1
     path: Assets/Scenes/LargeTestScene.unity
     guid: b4d0ac178b35d0e44b76170d73e030c2
+  - enabled: 1
+    path: Assets/Scenes/WinDialogue.unity
+    guid: efa4049ef7456ca448b713cbb8c55a8d
   - enabled: 1
     path: Assets/Scenes/WinScreen.unity
     guid: 9184b409d98731348a609e97d91b901b

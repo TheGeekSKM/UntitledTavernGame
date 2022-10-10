@@ -17,7 +17,7 @@ public class TimerMini : MonoBehaviour
         if (timeCurrently >= 360 && timeCurrently <= 500)
         {
             _timeStop = true;
-            Switch();
+            Switch(_sceneName);
         }
 
         if (timeCurrently > 1440f ) 
@@ -26,8 +26,8 @@ public class TimerMini : MonoBehaviour
         }
     }
 
-    public void Switch()
+    public void Switch(string name)
     {
-        SceneManager.LoadScene(_sceneName);
+        SceneManager.LoadScene(name);
     }
 }
