@@ -29,7 +29,7 @@ public class UIAnimationManager : MonoBehaviour
 
         if (_runOnStart)
         {
-            IntroAndExitAnimation(2f);
+            ExitAnimation(2f);
         }
     }
     
@@ -39,9 +39,9 @@ public class UIAnimationManager : MonoBehaviour
         LeanTween.move(_cachedOriginalTransform, _cachedFinalTransform, 2f).setEase(LeanTweenType.easeInOutQuart);
     }
 
-    public void ExitAnimation()
+    public void ExitAnimation(float _time)
     {
-        LeanTween.move(_cachedOriginalTransform, _startTransform, 1f).setEase(LeanTweenType.easeInOutQuart);
+        LeanTween.move(_cachedOriginalTransform, _startTransform, _time).setEase(LeanTweenType.easeInOutQuart);
     }
 
     public void IntroAndExitAnimation(float _timeToWait)

@@ -580,7 +580,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shakeTime: 0.25
-  shakeAmt: 5
+  shakeAmt: 10
 --- !u!1 &95996317
 GameObject:
   m_ObjectHideFlags: 0
@@ -859,6 +859,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1588002808}
     m_Modifications:
+    - target: {fileID: 2551563944672000860, guid: 9e5f988744f610a4facb875a1053e278, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2551563944672000860, guid: 9e5f988744f610a4facb875a1053e278, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4287012109957415014, guid: 9e5f988744f610a4facb875a1053e278, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
