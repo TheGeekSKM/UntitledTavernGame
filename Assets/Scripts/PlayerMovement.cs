@@ -1,3 +1,4 @@
+using System.Runtime.Serialization;
 using System.ComponentModel;
 using System;
 using System.Collections;
@@ -6,9 +7,12 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+
     [SerializeField] private float _moveSpeed = 5f;
     [SerializeField] private Rigidbody2D _rb;
     [SerializeField] private WeaponController _weapon;
+
+
 
     public float MoveSpeed 
     {
@@ -19,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 _moveDirection;
     private Vector2 _mousePosition;
 
-    
+
    
 
     
@@ -44,6 +48,8 @@ public class PlayerMovement : MonoBehaviour
         
 
     }
+
+  
 
     private void FixedUpdate()
     {

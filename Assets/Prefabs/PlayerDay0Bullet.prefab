@@ -159,6 +159,7 @@ MonoBehaviour:
   _maskToIgnore:
     serializedVersion: 2
     m_Bits: 256
+  _clip: {fileID: 8300000, guid: 4ef7c268f7fa25447bcdb183c3ae90fb, type: 3}
 --- !u!58 &7945568636109403383
 CircleCollider2D:
   m_ObjectHideFlags: 0

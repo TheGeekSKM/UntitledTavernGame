@@ -76,6 +76,10 @@ MonoBehaviour:
   _rB: {fileID: 8206535646677347121}
   _sprite: {fileID: 7892356605264300627}
   _selectedSprite: {fileID: 21300000, guid: e7215d1620a3c324b85490ab2920adc5, type: 3}
+  _selectedSound: {fileID: 8300000, guid: b43c957a3f5a7144fa7f039406a14733, type: 3}
+  _droppedSound: {fileID: 8300000, guid: e5a5397d2231de04aa91b09b5c4b8f28, type: 3}
+  _hurtSound: {fileID: 8300000, guid: 8ac09ce60585d6144a85fb7f62552474, type: 3}
+  _trappedParticle: {fileID: 1685574112575081098, guid: f3e42e0450f51054eb8c1c9a1e613d01, type: 3}
   _damageAmount: 3
 --- !u!50 &8206535646677347121
 Rigidbody2D:

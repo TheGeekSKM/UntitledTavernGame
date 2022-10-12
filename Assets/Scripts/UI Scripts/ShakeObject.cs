@@ -9,11 +9,13 @@ public class ShakeObject : MonoBehaviour
     [SerializeField] float shakeTime = 0.25f;
     [SerializeField] float shakeAmt = 5;
     Vector3 _originalPos;
+    float originalShakeAmount;
 
     void Start()
     {
         _originalPos = transform.position; 
-        ShakeMe();
+        originalShakeAmount = shakeAmt;
+
     }
 
     void Update()
@@ -31,6 +33,11 @@ public class ShakeObject : MonoBehaviour
         StartCoroutine(ShakeNow());
     }
 
+    public void ShakeMe(float _shakeAmount)
+    {
+        shakeAmt = _shakeAmount;
+    }
+
     IEnumerator ShakeNow()
     {
         
@@ -42,6 +49,7 @@ public class ShakeObject : MonoBehaviour
 
         yield return new WaitForSeconds(shakeTime);
         shaking = false;
+        shakeAmt = originalShakeAmount;
         transform.position = _originalPos;
     }
 }

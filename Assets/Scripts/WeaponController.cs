@@ -1,8 +1,11 @@
+using System.Runtime.Serialization;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+
+[RequireComponent(typeof(AudioSource))]
 public class WeaponController : MonoBehaviour
 {
     public bool UseConstant;
@@ -11,11 +14,17 @@ public class WeaponController : MonoBehaviour
     private WeaponDataSO _weapon;
     public bool shootDisabled = false;
     [SerializeField, HighlightIfNull] Transform _firePoint;
+    [SerializeField, HighlightIfNull] AudioSource _source;
     [SerializeField] UnityEvent OnFire;
 
     private void Awake()
     {
         _weapon = _weapons[0];
+    }
+
+    void OnValidate()
+    {
+        if (_source == null) { _source = GetComponent<AudioSource>(); }
     }
 
     public WeaponDataSO Weapon
@@ -64,7 +73,7 @@ public class WeaponController : MonoBehaviour
         {
             OnFire?.Invoke();
             WeaponDataSO _weaponToUse = UseConstant ? ConstantValue : _weapon;
-            if (_weaponToUse != null) {_weaponToUse.FireGun(_firePoint);}
+            if (_weaponToUse != null) {_weaponToUse.FireGun(_firePoint, _source);}
         }
     }
 }

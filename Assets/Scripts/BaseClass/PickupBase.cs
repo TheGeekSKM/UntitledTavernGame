@@ -1,3 +1,4 @@
+using System.Runtime.Serialization;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,9 @@ public class PickupBase : MonoBehaviour
     [SerializeField] protected int value = 1;
     [SerializeField] protected UnityEvent _onPick;
     [SerializeField] GameObject _OnPickParticle;
+    [SerializeField] AudioClip _clip; 
+
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -21,6 +25,7 @@ public class PickupBase : MonoBehaviour
 
     protected virtual void OnPickUp(Collider2D collision)
     {
+        if (_clip != null && SoundManager.Instance) { SoundManager.Instance.PlaySound(_clip, 0.1f); }
         if (_OnPickParticle != null) {Instantiate(_OnPickParticle, transform.position, Quaternion.identity);}
         Destroy(gameObject);
     }

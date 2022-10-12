@@ -1,3 +1,4 @@
+using System.Runtime.Serialization;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,13 @@ public class TrapBehavior : MonoBehaviour
     [SerializeField] SpriteRenderer _sprite;
     Sprite _originalSprite;
     [SerializeField, HighlightIfNull] Sprite _selectedSprite;
+    [SerializeField, HighlightIfNull] AudioClip _selectedSound;
+
+    [SerializeField, HighlightIfNull] AudioClip _droppedSound;
+    [SerializeField, HighlightIfNull] AudioClip _hurtSound;
+
+    [SerializeField, HighlightIfNull] GameObject _trappedParticle;
+
  
     void OnValidate()
     {
@@ -37,11 +45,18 @@ public class TrapBehavior : MonoBehaviour
 
     void OnMouseDown()
     {
+        if (SoundManager.Instance != null && _selectedSound != null) { SoundManager.Instance.PlaySound(_selectedSound, 0.3f); }
         if (_draggable)
         {
             _dragOffset = transform.position - GetMousePosition();
             Debug.Log("Clicked on Trap");
         }
+    }
+
+    void OnMouseUp()
+    {
+        if (SoundManager.Instance != null && _droppedSound != null) { SoundManager.Instance.PlaySound(_droppedSound, 0.3f); }
+        
     }
 
     void OnMouseDrag()
@@ -74,6 +89,9 @@ public class TrapBehavior : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
+            if (SoundManager.Instance && _hurtSound != null) { SoundManager.Instance.PlaySound(_hurtSound, 0.3f); }
+            Instantiate(_trappedParticle, other.gameObject.transform.position, other.gameObject.transform.rotation);
+
             DoTrap(other.gameObject.GetComponent<Health>());
         }
     }
@@ -81,6 +99,7 @@ public class TrapBehavior : MonoBehaviour
     public void DoTrap(Health _trappedHealth)
     {
         _trappedHealth.CurrentHealth -= _damageAmount;
+        
         Destroy(gameObject);
     }
 }

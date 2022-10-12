@@ -90,6 +90,7 @@ MonoBehaviour:
   _maskToIgnore:
     serializedVersion: 2
     m_Bits: 6272
+  _clip: {fileID: 8300000, guid: 171c437da56b6d548ad31b72c52cd2dc, type: 3}
 --- !u!212 &80781293905208074
 SpriteRenderer:
   m_ObjectHideFlags: 0

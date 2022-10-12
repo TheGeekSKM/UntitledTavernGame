@@ -1,3 +1,4 @@
+using System.Runtime.Serialization;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class BulletController : MonoBehaviour
     [SerializeField] Rigidbody2D _rB;
     [SerializeField, HighlightIfNull] GameObject _particles;
     [SerializeField] LayerMask _maskToIgnore;
+    [SerializeField] AudioClip _clip;
 
     public int BulletDamage 
     {
@@ -29,7 +31,10 @@ public class BulletController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.layer != _maskToIgnore) {Instantiate(_particles, transform.position, Quaternion.identity);}
+        if (other.gameObject.layer != _maskToIgnore) {
+            Instantiate(_particles, transform.position, Quaternion.identity);
+            if (_clip != null && SoundManager.Instance) { SoundManager.Instance.PlaySound(_clip, 0.3f); }
+        }
         
         IDamageable _damageable = other.gameObject.GetComponent<IDamageable>();
         if (_damageable != null && other.gameObject.layer != _maskToIgnore)

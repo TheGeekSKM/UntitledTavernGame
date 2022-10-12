@@ -68,6 +68,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _OnPickParticle: {fileID: 3633474578235353721, guid: 6610e1780413f734a8c5851f9086eb9a, type: 3}
+  _clip: {fileID: 8300000, guid: 73af1fc32f7bf8046bab471465e19119, type: 3}
 --- !u!1 &4707738253053657264
 GameObject:
   m_ObjectHideFlags: 0

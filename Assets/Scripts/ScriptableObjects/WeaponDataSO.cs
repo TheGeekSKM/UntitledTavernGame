@@ -11,10 +11,11 @@ public class WeaponDataSO : ScriptableObject
     public Sprite _weaponSprite;
 
     public GameObject _bulletPrefab;
+    public AudioClip _weaponSound;
     public float _fireForce = 20f;
     public int _weaponDamage = 1;
 
-    public void FireGun(Transform _firePoint)
+    public void FireGun(Transform _firePoint, AudioSource _source)
     {
       GameObject _bullet = Instantiate(_bulletPrefab, _firePoint.position, Quaternion.identity);
       BulletController _bC = _bullet.GetComponent<BulletController>();
@@ -22,6 +23,7 @@ public class WeaponDataSO : ScriptableObject
       if (_bC != null) { _bC.BulletDamage += _weaponDamage; }
 
       _bullet.GetComponent<Rigidbody2D>().AddForce(_firePoint.up * _fireForce, ForceMode2D.Impulse);
+      _source.PlayOneShot(_weaponSound);
     }
 
 }

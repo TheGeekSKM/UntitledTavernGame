@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: ShadowSpell
   description: This does untitled things to unnamed beings!
+  _weaponSprite: {fileID: 0}
   _bulletPrefab: {fileID: 8026314258934667204, guid: 707cb238da991d54a8be01898c465559, type: 3}
+  _weaponSound: {fileID: 8300000, guid: 2278b6b58bf94e64c97081154462e387, type: 3}
   _fireForce: 20
   _weaponDamage: 2

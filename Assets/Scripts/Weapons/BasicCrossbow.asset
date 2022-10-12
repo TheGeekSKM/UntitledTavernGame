@@ -16,5 +16,6 @@ MonoBehaviour:
   description: A worn down crossbow that barely stays alive...
   _weaponSprite: {fileID: 0}
   _bulletPrefab: {fileID: 8026314258934667204, guid: c346d7e4f8497ff4a80ed9c21e89266e, type: 3}
+  _weaponSound: {fileID: 8300000, guid: 5a08e3a5361c4d1459f5273e074fbb10, type: 3}
   _fireForce: 20
   _weaponDamage: 2

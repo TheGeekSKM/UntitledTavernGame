@@ -12,6 +12,8 @@ public class Health : MonoBehaviour, IDamageable
     [SerializeField, ShowIf("_logHealth")] TextMeshProUGUI _healthLog;
     [SerializeField] private bool _isNPC;
 
+    [SerializeField] private UnityEvent OnDamage;
+
     [SerializeField] private UnityEvent OnDeath;
     public int CurrentHealth
     {
@@ -39,6 +41,7 @@ public class Health : MonoBehaviour, IDamageable
     public void Damage(int _damageAmount)
     {
         _currentHealth -= _damageAmount;
+        OnDamage?.Invoke();
         if (_currentHealth <= 0) { Die(); }
     }
 
