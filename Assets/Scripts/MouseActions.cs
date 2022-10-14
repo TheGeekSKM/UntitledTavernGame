@@ -8,20 +8,22 @@ public class MouseActions : MonoBehaviour
 {
     [SerializeField, HighlightIfNull] GameObject _image;
     [SerializeField] UnityEvent _onClickEvent;
-    private bool _clicked = false;
+    [SerializeField] UnityEvent _onEnterEvent;
+
 
     void Start()
     {
         _image.SetActive(false);
-        _clicked = false;
+
     }
     void OnMouseEnter()
     {
-        if (_image != null && !_clicked) {_image.gameObject.SetActive(true);}
+        if (_image != null) {_image.gameObject.SetActive(true);}
+        _onEnterEvent?.Invoke();
     }
     void OnMouseOver()
     {
-        if (!_clicked) {_image.transform.position = Input.mousePosition;}
+        _image.transform.position = Input.mousePosition;
     }
 
     void OnMouseExit()
@@ -32,7 +34,7 @@ public class MouseActions : MonoBehaviour
     void OnMouseDown()
     {
         _image.gameObject.SetActive(false);
-        _clicked = true;
+
         _onClickEvent?.Invoke();
     }
 }

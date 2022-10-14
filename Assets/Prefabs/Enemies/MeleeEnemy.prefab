@@ -409,6 +409,7 @@ MonoBehaviour:
   _logHealth: 0
   _healthLog: {fileID: 0}
   _isNPC: 0
+  _bloodSpurtParticle: {fileID: 6189418853376292095, guid: 2cb6781321c3c27428c7eb74584ec8d5, type: 3}
   OnDamage:
     m_PersistentCalls:
       m_Calls: []

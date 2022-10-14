@@ -155,7 +155,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bulletDamage: 0
   _rB: {fileID: 8026314258934667205}
-  _particles: {fileID: 4244371339144815934, guid: 0d1f1e05af5e4614e86df8f0940faa55, type: 3}
+  _normalParticles: {fileID: 4244371339144815934, guid: 0d1f1e05af5e4614e86df8f0940faa55, type: 3}
+  _bloodSpurtParticle: {fileID: 6189418853376292095, guid: 2cb6781321c3c27428c7eb74584ec8d5, type: 3}
   _maskToIgnore:
     serializedVersion: 2
     m_Bits: 256

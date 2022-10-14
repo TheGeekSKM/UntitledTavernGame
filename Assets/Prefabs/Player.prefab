@@ -168,7 +168,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b39d2cbb1337c6458adfba3e905fa8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useFootsteps: 1
   _moveSpeed: 5
   _rb: {fileID: 5055545590051373109}
   _weapon: {fileID: 5055545590999291790}
@@ -301,6 +300,10 @@ MonoBehaviour:
   _logHealth: 1
   _healthLog: {fileID: 0}
   _isNPC: 0
+  _bloodSpurtParticle: {fileID: 6189418853376292095, guid: 2cb6781321c3c27428c7eb74584ec8d5, type: 3}
+  OnDamage:
+    m_PersistentCalls:
+      m_Calls: []
   OnDeath:
     m_PersistentCalls:
       m_Calls:

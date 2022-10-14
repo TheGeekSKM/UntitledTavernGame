@@ -11,6 +11,7 @@ public class Health : MonoBehaviour, IDamageable
     [SerializeField] private bool _logHealth;
     [SerializeField, ShowIf("_logHealth")] TextMeshProUGUI _healthLog;
     [SerializeField] private bool _isNPC;
+    [SerializeField] private bool _isLiving = true;
 
     [SerializeField] private UnityEvent OnDamage;
 
@@ -20,6 +21,8 @@ public class Health : MonoBehaviour, IDamageable
         get {return _currentHealth;}
         set {_currentHealth = value;}
     }
+
+    public bool IsLiving => _isLiving;
 
     [SerializeField] private bool resetHealthOnStart = true;
 

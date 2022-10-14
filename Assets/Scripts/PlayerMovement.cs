@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _moveSpeed = 5f;
     [SerializeField] private Rigidbody2D _rb;
     [SerializeField] private WeaponController _weapon;
+    [SerializeField, ReadOnly] bool _isMoving;
+    public bool IsMoving => _isMoving;
 
 
 
@@ -45,7 +47,14 @@ public class PlayerMovement : MonoBehaviour
         // float angle = Vector2.SignedAngle(Vector2.right, direction);
         // transform.eulerAngles = new Vector3 (0, 0, angle);
 
-        
+        if (_moveDirection.magnitude > 0.01f)
+        {
+            _isMoving = true;
+        }
+        else
+        {
+            _isMoving = false;
+        }
 
     }
 

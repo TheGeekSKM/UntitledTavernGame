@@ -8,7 +8,8 @@ public class BulletController : MonoBehaviour
 {
     [SerializeField] private int _bulletDamage = 1;
     [SerializeField] Rigidbody2D _rB;
-    [SerializeField, HighlightIfNull] GameObject _particles;
+    [SerializeField, HighlightIfNull] GameObject _normalParticles;
+    [SerializeField, HighlightIfNull] GameObject _bloodSpurtParticle;
     [SerializeField] LayerMask _maskToIgnore;
     [SerializeField] AudioClip _clip;
 
@@ -26,20 +27,27 @@ public class BulletController : MonoBehaviour
 
     void Start()
     {
-        Instantiate(_particles, transform.position, Quaternion.identity);
+        if (_normalParticles) {Instantiate(_normalParticles, transform.position, Quaternion.identity);}
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.layer != _maskToIgnore) {
-            Instantiate(_particles, transform.position, Quaternion.identity);
+            
             if (_clip != null && SoundManager.Instance) { SoundManager.Instance.PlaySound(_clip, 0.3f); }
         }
         
         IDamageable _damageable = other.gameObject.GetComponent<IDamageable>();
         if (_damageable != null && other.gameObject.layer != _maskToIgnore)
         {
-            
+            if (other.gameObject.GetComponent<Health>().IsLiving)
+            {
+                if (_bloodSpurtParticle != null) { Instantiate(_bloodSpurtParticle, transform.position, transform.rotation); }
+            }
+            else
+            {
+                Instantiate(_normalParticles, transform.position, Quaternion.identity);
+            }
             _damageable.Damage(_bulletDamage);
         }
        

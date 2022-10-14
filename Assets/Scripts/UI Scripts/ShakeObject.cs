@@ -36,6 +36,7 @@ public class ShakeObject : MonoBehaviour
     public void ShakeMe(float _shakeAmount)
     {
         shakeAmt = _shakeAmount;
+        StartCoroutine(ShakeNow());
     }
 
     IEnumerator ShakeNow()
