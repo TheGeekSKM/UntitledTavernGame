@@ -8,6 +8,7 @@ public class FootStepSounds : MonoBehaviour
     [SerializeField] PlayerMovement _movement;
     float footStepTimer = 0f;
     [SerializeField] float baseStepSpeed = 0.5f;
+    [SerializeField] float volume = 0.5f; 
     [SerializeField] AudioSource _source;
 
 
@@ -30,7 +31,7 @@ public class FootStepSounds : MonoBehaviour
 
             if (footStepTimer <= 0)
             {
-                _source.PlayOneShot(_footstepSounds[Random.Range(0, _footstepSounds.Length)], 0.25f);
+                _source.PlayOneShot(_footstepSounds[Random.Range(0, _footstepSounds.Length)], volume);
                 footStepTimer = baseStepSpeed;
             }
         }
