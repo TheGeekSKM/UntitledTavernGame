@@ -8,7 +8,17 @@ public class InventoryReference : MonoBehaviour
     [SerializeField, HighlightIfNull] Inventory _inventory;
     [SerializeField] TextMeshProUGUI _text;
 
-    public int NumberOfBones => _inventory._numOfBones;
+    public int NumberOfBones 
+    {
+        get
+        {
+            return _inventory._numOfBones;
+        }
+        set
+        {
+            _inventory._numOfBones = value;
+        }
+    }
 
     void Update()
     {

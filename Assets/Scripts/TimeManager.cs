@@ -60,6 +60,18 @@ public class TimeManager : MonoBehaviour
     public Timer TimerThing => _timer;
     #endregion
 
+
+    #region SaveVariables
+
+        int _savePHealth;
+        int _savePDamage;
+        int _savePBoneCount;
+        float _savePSpeed;
+        int _saveNumDays;
+        int _saveNumNPCS;
+
+    #endregion
+
     #region Singleton
     public static TimeManager Instance { get; private set; }
 
@@ -274,7 +286,7 @@ public class TimeManager : MonoBehaviour
 
     public void CheckNPCS()
     {
-        if (_targets.Count <= 0)
+        if (_targets.Count <= 1)
         {
             Debug.Log("All NPCS are dead. You Lose");
         }
@@ -284,4 +296,11 @@ public class TimeManager : MonoBehaviour
         return _targets;
     }
     #endregion
+
+    #region Save/Load
+
+   
+
+    #endregion
+
 }

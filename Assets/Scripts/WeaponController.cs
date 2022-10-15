@@ -65,6 +65,7 @@ public class WeaponController : MonoBehaviour
     public int WeaponDamage
     {
           get { return UseConstant ? ConstantValue._weaponDamage: _weapon._weaponDamage; }
+          set { _weapon._weaponDamage = value;}
     }
 
     public void Fire()
